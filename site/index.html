@@ -6,32 +6,31 @@
   <title>Shinnnosuke &amp; Kaho's Wedding</title>
   <link rel="stylesheet" href="styles.css">
   <!-- Google Fonts used by the reference design -->
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Rouge+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Rouge+Script&family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <picture>
+        <source srcset="image/hero.png" type="image/svg+xml">
+        <img src="image/hero.png" alt="ヒーローイメージ" class="hero-art" loading="lazy">
+      </picture>
+    </div>
     <div class="hero-inner">
       <div class="hero-content">
-        <h1 class="couple">〇〇 &amp; △△</h1>
-        <p class="subtitle">'s Wedding Party</p>
-        <p class="event-date" id="event-date">202X年XX月XX日</p>
-          <div class="countdown" id="countdown" aria-hidden="false">
-            <div class="countdown-item"><span class="num" id="cd-days">--</span><span class="label">Days</span></div>
-            <div class="countdown-item"><span class="num" id="cd-hours">--</span><span class="label">Hours</span></div>
-            <div class="countdown-item"><span class="num" id="cd-mins">--</span><span class="label">Minutes</span></div>
-            <div class="countdown-item"><span class="num" id="cd-secs">--</span><span class="label">Seconds</span></div>
-          </div>
+        <h1 class="couple">Shinnosuke &amp; Kaho</h1>
+        <p class="subtitle">We're Getting Married !!</p>
+        <p class="event-date" id="event-date">2026年3月20日</p>
+        <div class="countdown" id="countdown" aria-hidden="false">
+          <div class="countdown-item"><span class="num" id="cd-days">--</span><span class="label">Days</span></div>
+          <div class="countdown-item"><span class="num" id="cd-hours">--</span><span class="label">Hours</span></div>
+          <div class="countdown-item"><span class="num" id="cd-mins">--</span><span class="label">Minutes</span></div>
+          <div class="countdown-item"><span class="num" id="cd-secs">--</span><span class="label">Seconds</span></div>
+        </div>
         <div class="hero-actions">
           <a class="btn ghost" id="map-btn" href="#map">会場を見る</a>
           <a class="btn" id="calendar-btn" href="#">カレンダーに追加</a>
         </div>
-      </div>
-      <div class="hero-decor" aria-hidden="true">
-        <!-- decorative SVG hero image (placeholder) -->
-        <picture>
-          <source srcset="image/hero.svg" type="image/svg+xml">
-          <img src="image/hero.svg" alt="ヒーローイメージ" class="hero-art" loading="lazy">
-        </picture>
       </div>
     </div>
   </header>
@@ -54,17 +53,42 @@
     </section>
 
     <section class="photos fade-in-section">
-      <div class="photo-grid">
-        <div class="photo-item">
-          <div class="photo-placeholder">
-            <span>写真を追加</span>
+      <h3>Photo Gallery</h3>
+      <div class="photo-slider-container">
+        <button class="slider-nav prev" aria-label="前の写真へ" type="button">&#10094;</button>
+        <div class="photo-slider" role="region" aria-label="フォトギャラリー">
+          <div class="photo-item">
+            <div class="photo-placeholder">
+              <span>写真 1</span>
+            </div>
+          </div>
+          <div class="photo-item">
+            <div class="photo-placeholder">
+              <span>写真 2</span>
+            </div>
+          </div>
+          <div class="photo-item">
+            <div class="photo-placeholder">
+              <span>写真 3</span>
+            </div>
+          </div>
+          <div class="photo-item">
+            <div class="photo-placeholder">
+              <span>写真 4</span>
+            </div>
+          </div>
+          <div class="photo-item">
+            <div class="photo-placeholder">
+              <span>写真 5</span>
+            </div>
+          </div>
+          <div class="photo-item">
+            <div class="photo-placeholder">
+              <span>写真 6</span>
+            </div>
           </div>
         </div>
-        <div class="photo-item">
-          <div class="photo-placeholder">
-            <span>写真を追加</span>
-          </div>
-        </div>
+        <button class="slider-nav next" aria-label="次の写真へ" type="button">&#10095;</button>
       </div>
     </section>
 

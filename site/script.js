@@ -205,12 +205,49 @@
     // Initialize scroll animations
     handleScrollAnimation();
     window.addEventListener('scroll', handleScrollAnimation);
+
+    // Photo Slider initialization
+    initPhotoSlider();
   });
 
-  document.addEventListener('DOMContentLoaded', ()=>{
-    loadConfig();
-    const form = document.getElementById('rsvp-form');
-    form.addEventListener('submit', submitForm);
-  });
+  // Photo Slider functionality
+  function initPhotoSlider() {
+    const slider = document.querySelector('.photo-slider');
+    const prevBtn = document.querySelector('.slider-nav.prev');
+    const nextBtn = document.querySelector('.slider-nav.next');
+
+    if (!slider || !prevBtn || !nextBtn) return;
+
+    const slideWidth = window.innerWidth < 768 ? 260 : 300; // width + gap
+    
+    function scrollToNext() {
+      slider.scrollBy({
+        left: slideWidth,
+        behavior: 'smooth'
+      });
+    }
+
+    function scrollToPrev() {
+      slider.scrollBy({
+        left: -slideWidth,
+        behavior: 'smooth'
+      });
+    }
+
+    // ボタンクリックイベント
+    nextBtn.addEventListener('click', scrollToNext);
+    prevBtn.addEventListener('click', scrollToPrev);
+
+    // キーボードナビゲーション
+    slider.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') scrollToNext();
+      if (e.key === 'ArrowLeft') scrollToPrev();
+    });
+
+    // スマートフォンでのスクロール操作を自然にする
+    if ('ontouchstart' in window) {
+      slider.style.webkitOverflowScrolling = 'touch';
+    }
+  }
 
 })();
