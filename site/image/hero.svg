@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Simple decorative hero SVG used as lightweight placeholder -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" version="1.1" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="lg" x1="0" x2="1">
-      <stop offset="0" stop-color="#f8c8d8"/>
-      <stop offset="1" stop-color="#ffd7b5"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="400" fill="url(#lg)"/>
-  <g fill="#222" font-family="Raleway, Arial, sans-serif">
-    <text x="50%" y="42%" font-size="48" text-anchor="middle" dominant-baseline="middle">〇〇 &amp; △△</text>
-    <text x="50%" y="58%" font-size="20" text-anchor="middle" dominant-baseline="middle">2025年12月12日</text>
-  </g>
+  <linearGradient id="a" x1="0" x2="1200" y1="400" y2="400" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#1e3a8a" offset="0"/>
+   <stop stop-color="#172554" offset="1"/>
+  </linearGradient>
+  <filter id="b" x="-.051923" y="-.051923" width="1.1038" height="1.1038" color-interpolation-filters="sRGB">
+   <feGaussianBlur stdDeviation="8.6538"/>
+  </filter>
+ </defs>
+ <rect width="1200" height="800" fill="url(#a)"/>
+ <g fill="#fff" opacity=".15">
+  <circle transform="matrix(.72033 0 0 .72033 335.8 223.87)" cx="200" cy="200" r="200" filter="url(#b)"/>
+  <circle transform="matrix(.72033 0 0 .72033 535.8 423.87)" cx="200" cy="200" r="200" filter="url(#b)"/>
+ </g>
 </svg>

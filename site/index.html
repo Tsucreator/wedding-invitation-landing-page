@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>〇〇 &amp; △△'s Wedding Party</title>
+  <title>Shinnnosuke &amp; Kaho's Wedding</title>
   <link rel="stylesheet" href="styles.css">
   <!-- Google Fonts used by the reference design -->
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Rouge+Script&display=swap" rel="stylesheet">
@@ -15,11 +15,12 @@
         <h1 class="couple">〇〇 &amp; △△</h1>
         <p class="subtitle">'s Wedding Party</p>
         <p class="event-date" id="event-date">202X年XX月XX日</p>
-        <div class="countdown" id="countdown" aria-hidden="false">
-          <div class="countdown-item"><span class="num" id="cd-days">--</span><span class="label">days</span></div>
-          <div class="countdown-item"><span class="num" id="cd-hours">--</span><span class="label">hrs</span></div>
-          <div class="countdown-item"><span class="num" id="cd-mins">--</span><span class="label">mins</span></div>
-        </div>
+          <div class="countdown" id="countdown" aria-hidden="false">
+            <div class="countdown-item"><span class="num" id="cd-days">--</span><span class="label">Days</span></div>
+            <div class="countdown-item"><span class="num" id="cd-hours">--</span><span class="label">Hours</span></div>
+            <div class="countdown-item"><span class="num" id="cd-mins">--</span><span class="label">Minutes</span></div>
+            <div class="countdown-item"><span class="num" id="cd-secs">--</span><span class="label">Seconds</span></div>
+          </div>
         <div class="hero-actions">
           <a class="btn ghost" id="map-btn" href="#map">会場を見る</a>
           <a class="btn" id="calendar-btn" href="#">カレンダーに追加</a>
@@ -36,27 +37,42 @@
   </header>
 
   <main class="container">
-    <section class="greeting">
+    <section class="greeting fade-in-section">
       <h2>ご挨拶</h2>
       <p>親愛なる皆様へ。私たちの結婚式にぜひご出席いただきたく、ご案内申し上げます。以下のフォームよりご回答ください。</p>
     </section>
 
-    <section class="details">
+    <section class="details fade-in-section">
       <h3>日時と場所</h3>
       <ul>
-        <li><strong>日時</strong>: 202X年XX月XX日 (土)</li>
-        <li><strong>受付</strong>: HH:MM〜</li>
-        <li><strong>挙式</strong>: HH:MM〜</li>
-        <li><strong>披露宴</strong>: HH:MM〜</li>
+        <li><strong>日時</strong>: 2026年3月20日 (金)</li>
+        <li><strong>受付</strong>: 9:30〜</li>
+        <li><strong>挙式</strong>: 10:00〜</li>
+        <li><strong>披露宴</strong>: 11:00〜</li>
         <li><strong>場所</strong>: 〇〇迎賓館 △△の間</li>
       </ul>
     </section>
 
-    <section class="rsvp">
+    <section class="photos fade-in-section">
+      <div class="photo-grid">
+        <div class="photo-item">
+          <div class="photo-placeholder">
+            <span>写真を追加</span>
+          </div>
+        </div>
+        <div class="photo-item">
+          <div class="photo-placeholder">
+            <span>写真を追加</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rsvp fade-in-section">
       <h3>出欠回答フォーム</h3>
       <p class="deadline" id="deadline">回答締切: <span id="deadline-date"></span></p>
 
-      <form id="rsvp-form" novalidate>
+      <form id="rsvp-form" novalidate class="fade-in-section">
         <label>お名前 <input type="text" name="name" id="name" required placeholder="山田 太郎"></label>
         <label>ふりがな <input type="text" name="kana" id="kana" required placeholder="やまだ たろう"></label>
 

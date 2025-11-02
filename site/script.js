@@ -115,14 +115,40 @@
       const hours = Math.floor(diff / (1000*60*60));
       diff -= hours * (1000*60*60);
       const mins = Math.floor(diff / (1000*60));
-      document.getElementById('cd-days').textContent = days;
-      document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
-      document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+      diff -= mins * (1000*60);
+      const secs = Math.floor(diff / 1000);
+
+      // アニメーション付きで数字を更新する関数
+      function updateNumber(id, newValue, prevValue) {
+        const el = document.getElementById(id);
+        if (el && el.textContent !== String(newValue)) {
+          el.classList.add('flip');
+          setTimeout(() => {
+            el.textContent = String(newValue).padStart(2,'0');
+            setTimeout(() => el.classList.remove('flip'), 100);
+          }, 150);
+        }
+      }
+
+      // 前回の値を保存して比較
+      if (!tick.prev) tick.prev = {days: -1, hours: -1, mins: -1, secs: -1};
+      
+      updateNumber('cd-days', days, tick.prev.days);
+      updateNumber('cd-hours', String(hours).padStart(2,'0'), tick.prev.hours);
+      updateNumber('cd-mins', String(mins).padStart(2,'0'), tick.prev.mins);
+      updateNumber('cd-secs', String(secs).padStart(2,'0'), tick.prev.secs);
+
+      tick.prev = {days, hours, mins, secs};
+
+      // 日付が0になったら表示を変更
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = '<div class="countdown-item special"><span class="num">Happy</span><span class="label">Wedding Day!</span></div>';
+      }
     }
 
     tick();
     if(countdownTimer) clearInterval(countdownTimer);
-    countdownTimer = setInterval(tick, 60*1000);
+    countdownTimer = setInterval(tick, 1000); // 1秒ごとに更新
   }
 
   // Add-to-calendar (Google Calendar) helper
@@ -155,6 +181,18 @@
     return url;
   }
 
+  // Scroll animation for sections
+  function handleScrollAnimation() {
+    const sections = document.querySelectorAll('.fade-in-section');
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      if (sectionTop < windowHeight * 0.85) { // Show when 85% visible
+        section.classList.add('is-visible');
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', ()=>{
     loadConfig();
     const form = document.getElementById('rsvp-form');
@@ -163,6 +201,10 @@
     if(cal){ cal.addEventListener('click', e=>{ e.preventDefault(); const href = makeGoogleCalendarLink(); if(href!=='#') window.open(href,'_blank'); }); }
     const mapBtn = document.getElementById('map-btn');
     if(mapBtn){ mapBtn.addEventListener('click', ()=>{ location.hash = 'map'; }); }
+
+    // Initialize scroll animations
+    handleScrollAnimation();
+    window.addEventListener('scroll', handleScrollAnimation);
   });
 
   document.addEventListener('DOMContentLoaded', ()=>{
