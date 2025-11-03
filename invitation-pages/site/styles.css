@@ -94,20 +94,26 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 
 .countdown {
   display: flex;
-  gap: 25px;
-  margin: 40px 0;
+  gap: clamp(10px, 2vw, 25px);
+  margin: 40px auto;
   justify-content: center;
   opacity: 0;
   transform: translateY(20px);
   animation: slideUp 1.5s ease 0.9s forwards;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 .countdown-item {
   background: rgba(255,255,255,0.12);
-  padding: 20px;
+  padding: clamp(10px, 3vw, 20px);
   border-radius: 16px;
   backdrop-filter: blur(12px);
   text-align: center;
-  min-width: 120px;
+  flex: 1;
+  min-width: 0; /* Prevent flex items from overflowing */
   border: 1px solid rgba(255,255,255,0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
@@ -117,7 +123,7 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 }
 .countdown-item .num {
   font-weight: 400;
-  font-size: 48px;
+  font-size: clamp(24px, 5vw, 48px);
   display: block;
   color: #fff;
   margin-bottom: 8px;
@@ -126,14 +132,16 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
   text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
   position: relative;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 .countdown-item .label {
-  font-size: 16px;
+  font-size: clamp(12px, 3vw, 16px);
   color: rgba(255,255,255,0.9);
   letter-spacing: 2px;
   font-weight: 300;
   font-family: 'Great Vibes', cursive;
   text-transform: none;
+  white-space: nowrap;
 }
 @keyframes numberFlip {
   0% { transform: translateY(0); opacity: 1; }
@@ -154,21 +162,19 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: 100vh; /* スマホでは最低でも画面の高さ分を確保 */
+    height: auto; /* 内容に合わせて高さを可変に */
+  }
   .countdown {
-    gap: 15px;
-    margin: 30px 0;
-    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px auto;
+    padding: 0 5px;
   }
   .countdown-item {
-    min-width: calc(50% - 15px);
-    padding: 15px;
+    padding: 10px 5px;
   }
-  .countdown-item .num {
-    font-size: 36px;
-  }
-  .countdown-item .label {
-    font-size: 14px;
-  }
+  /* Remove size adjustments as we're using clamp() now */
 }
 
 .hero-actions {
