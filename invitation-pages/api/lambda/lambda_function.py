@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart
 
 def create_email_body(data):
     """メール本文を生成する"""
-    attendance = "ご出席" if data.get('attendance') == 'attend' else "ご欠席"
+    attendance = "ご出席" if data.get('attendance') == 'ご出席' else "ご欠席"
     
     body = f"""
 結婚式の出欠回答が届きました。
@@ -30,6 +30,9 @@ def send_email(data):
     sender = os.environ.get('SENDER_EMAIL')
     recipient = os.environ.get('RECIPIENT_EMAIL')
     aws_region = os.environ.get('AWS_REGION', 'ap-northeast-1')
+
+    # 出欠ステータスの取得
+    attendance = "ご出席" if data.get('attendance') == 'ご出席' else "ご欠席"
 
     # メールの作成
     msg = MIMEMultipart()
