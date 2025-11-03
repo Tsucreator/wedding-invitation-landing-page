@@ -1,0 +1,48 @@
+name: Deploy Backend to Lambda
+
+# mainブランチにpushされた時に実行
+on:
+  push:
+    branches:
+      - main
+    # "backend"ディレクトリ以下に変更があった場合のみ実行
+    paths:
+      - 'api/lambda/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. リポジトリのコードをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Python環境のセットアップ
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 3. 依存ライブラリのインストールとパッケージング
+      - name: Install dependencies and create deployment package
+        run: |
+          cd backend/  # backendディレクトリに移動
+          pip install -r requirements.txt -t ./package
+          cp lambda_function.py ./package/
+          cd package/
+          zip -r ../lambda-deployment.zip .
+        # 注意: "backend" や "lambda_function.py" の部分は
+        # 実際のディレクトリ/ファイル名に合わせてください。
+
+      # 4. AWS認証情報を設定
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # 5. Lambda関数を更新
+      - name: Deploy to Lambda
+        run: |
+          aws lambda update-function-code --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} --zip-file fileb://backend/lambda-deployment.zip
