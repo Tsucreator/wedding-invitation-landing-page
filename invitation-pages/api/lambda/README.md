@@ -8,7 +8,7 @@ Environment variables required:
 - AWS_REGION (optional, defaults to us-east-1)
 
 IAM permissions required for the Lambda role:
-- ses:SendEmail
+- SES:SendEmail
 
 Deploy notes:
 - Install dependencies (`npm install`) and package the `node_modules` with the function, or use a bundler.
