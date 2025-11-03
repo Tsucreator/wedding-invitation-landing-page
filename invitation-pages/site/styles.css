@@ -37,22 +37,36 @@
 
 .handwriting-text text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 64px;
+  font-size: 54px;
   fill: transparent;
   stroke: #fff;
+  stroke-width: 0.8px;
+  stroke-dasharray: 150;
+  stroke-dashoffset: 150;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transform: translateY(10px);
 }
 
-.text-path, .text-stroke {
-  stroke-width: 1.2;
-  stroke-dasharray: 900;
-  stroke-dashoffset: 900;
-  animation: draw 3s ease forwards;
+.letter {
+  animation: writeLetter 0.8s ease forwards;
 }
 
-@keyframes draw {
+.letter-second {
+  animation: writeLetter 0.8s ease forwards;
+}
+
+@keyframes writeLetter {
   0% {
-    stroke-dashoffset: 900;
+    stroke-dashoffset: 150;
     fill: transparent;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
   }
   80% {
     stroke-dashoffset: 0;
@@ -60,9 +74,50 @@
   }
   100% {
     stroke-dashoffset: 0;
-    fill: rgba(255, 255, 255, 0.95);
+    fill: #fff;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+/* 各文字に遅延をつける */
+.letter:nth-child(1) { animation-delay: 0.1s; }
+.letter:nth-child(2) { animation-delay: 0.15s; }
+.letter:nth-child(3) { animation-delay: 0.2s; }
+.letter:nth-child(4) { animation-delay: 0.25s; }
+.letter:nth-child(5) { animation-delay: 0.3s; }
+.letter:nth-child(6) { animation-delay: 0.35s; }
+.letter:nth-child(7) { animation-delay: 0.4s; }
+.letter:nth-child(8) { animation-delay: 0.45s; }
+.letter:nth-child(9) { animation-delay: 0.5s; }
+.letter:nth-child(10) { animation-delay: 0.55s; }
+.letter:nth-child(11) { animation-delay: 0.7s; }
+.letter:nth-child(12) { animation-delay: 0.85s; }
+.letter:nth-child(13) { animation-delay: 0.9s; }
+.letter:nth-child(14) { animation-delay: 0.95s; }
+.letter:nth-child(15) { animation-delay: 1.0s; }
+
+.letter-second:nth-child(1) { animation-delay: 1.3s; }
+.letter-second:nth-child(2) { animation-delay: 1.35s; }
+.letter-second:nth-child(3) { animation-delay: 1.4s; }
+.letter-second:nth-child(4) { animation-delay: 1.45s; }
+.letter-second:nth-child(5) { animation-delay: 1.5s; }
+.letter-second:nth-child(6) { animation-delay: 1.6s; }
+.letter-second:nth-child(7) { animation-delay: 1.65s; }
+.letter-second:nth-child(8) { animation-delay: 1.7s; }
+.letter-second:nth-child(9) { animation-delay: 1.75s; }
+.letter-second:nth-child(10) { animation-delay: 1.8s; }
+.letter-second:nth-child(11) { animation-delay: 1.85s; }
+.letter-second:nth-child(12) { animation-delay: 1.9s; }
+.letter-second:nth-child(13) { animation-delay: 2.0s; }
+.letter-second:nth-child(14) { animation-delay: 2.05s; }
+.letter-second:nth-child(15) { animation-delay: 2.1s; }
+.letter-second:nth-child(16) { animation-delay: 2.15s; }
+.letter-second:nth-child(17) { animation-delay: 2.2s; }
+.letter-second:nth-child(18) { animation-delay: 2.25s; }
+.letter-second:nth-child(19) { animation-delay: 2.3s; }
+.letter-second:nth-child(20) { animation-delay: 2.4s; }
+.letter-second:nth-child(21) { animation-delay: 2.45s; }
 
 @keyframes fadeOutOverlay {
   0% {
@@ -94,18 +149,26 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
   height: 100%;
 }
 
-.hero-img {
+.hero-img-wrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 1.5s ease-in-out;
+  z-index: 1;
 }
 
-.hero-img.active {
+.hero-img-wrapper.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   opacity: 0.85;
 }
 .hero-inner {

@@ -201,58 +201,36 @@
 
   // ヒーローイメージのスライドショー
   function initHeroSlideshow() {
-    const heroImages = document.querySelectorAll('.hero-img');
+    const heroWrappers = document.querySelectorAll('.hero-img-wrapper');
+    // 画像が1枚以下の場合はスライドショーを実行しない
+    if (heroWrappers.length <= 1) return;
+
     let currentImageIndex = 0;
+    let isAnimating = false;
 
     function showNextImage() {
-      heroImages.forEach(img => img.classList.remove('active'));
-      heroImages[currentImageIndex].classList.add('active');
-      currentImageIndex = (currentImageIndex + 1) % heroImages.length;
-    }
+      if (isAnimating) return;
+      isAnimating = true;
 
-    showNextImage(); // 初期表示
-    setInterval(showNextImage, 3000); // 3秒ごとに切り替え
-  }
+      const currentWrapper = heroWrappers[currentImageIndex];
+      const nextIndex = (currentImageIndex + 1) % heroWrappers.length;
+      const nextWrapper = heroWrappers[nextIndex];
 
-  document.addEventListener('DOMContentLoaded', ()=>{
-    loadConfig();
-    initHeroSlideshow();
-    const form = document.getElementById('rsvp-form');
-    form.addEventListener('submit', submitForm);
-    const cal = document.getElementById('calendar-btn');
-    if(cal){ cal.addEventListener('click', e=>{ e.preventDefault(); const href = makeGoogleCalendarLink(); if(href!=='#') window.open(href,'_blank'); }); }
-    const mapBtn = document.getElementById('map-btn');
-    if(mapBtn){ mapBtn.addEventListener('click', ()=>{ location.hash = 'map'; }); }
-
-    // Initialize scroll animations
-    handleScrollAnimation();
-    window.addEventListener('scroll', handleScrollAnimation);
-
-    // Hero Image Slideshow
-    function initHeroSlideshow() {
-      const heroImages = document.querySelectorAll('.hero-img');
-      let currentImageIndex = 0;
-
-      function showNextImage() {
-        // 現在のイメージを非表示に
-        heroImages[currentImageIndex].classList.remove('active');
-        // 次のイメージのインデックスを計算
-        currentImageIndex = (currentImageIndex + 1) % heroImages.length;
-        // 次のイメージを表示
-        heroImages[currentImageIndex].classList.add('active');
-      }
-
-      // 最初の画像を表示
-      heroImages[0].classList.add('active');
+      nextWrapper.classList.add('active');
       
-      // 3秒ごとに画像を切り替え
-      setInterval(showNextImage, 3000);
+      setTimeout(() => {
+        currentWrapper.classList.remove('active');
+        currentImageIndex = nextIndex;
+        isAnimating = false;
+      }, 100); // CSSのトランジション時間と同じ
     }
 
-    // Initialize slideshows
-    initHeroSlideshow();
-    initPhotoSlider();
-  });
+    // 最初の画像を表示
+    heroWrappers[0].classList.add('active');
+    
+    // 4.5秒ごとに画像を切り替え
+    setInterval(showNextImage, 8000); // 表示時間(3s) + トランジション時間(1.5s)
+  }
 
   // Photo Slider functionality
   function initPhotoSlider() {
@@ -265,33 +243,44 @@
     const slideWidth = window.innerWidth < 768 ? 260 : 300; // width + gap
     
     function scrollToNext() {
-      slider.scrollBy({
-        left: slideWidth,
-        behavior: 'smooth'
-      });
+      slider.scrollBy({ left: slideWidth, behavior: 'smooth' });
     }
 
     function scrollToPrev() {
-      slider.scrollBy({
-        left: -slideWidth,
-        behavior: 'smooth'
-      });
+      slider.scrollBy({ left: -slideWidth, behavior: 'smooth' });
     }
 
-    // ボタンクリックイベント
     nextBtn.addEventListener('click', scrollToNext);
     prevBtn.addEventListener('click', scrollToPrev);
 
-    // キーボードナビゲーション
     slider.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight') scrollToNext();
       if (e.key === 'ArrowLeft') scrollToPrev();
     });
 
-    // スマートフォンでのスクロール操作を自然にする
     if ('ontouchstart' in window) {
       slider.style.webkitOverflowScrolling = 'touch';
     }
   }
+
+  // --- DOMContentLoaded: ページの読み込み完了後に各種機能を初期化 ---
+  document.addEventListener('DOMContentLoaded', ()=>{
+    loadConfig();
+    initHeroSlideshow(); // ヒーロースライドショーを初期化
+    initPhotoSlider();  // フォトスライダーを初期化
+
+    const form = document.getElementById('rsvp-form');
+    form.addEventListener('submit', submitForm);
+
+    const cal = document.getElementById('calendar-btn');
+    if(cal){ cal.addEventListener('click', e=>{ e.preventDefault(); const href = makeGoogleCalendarLink(); if(href!=='#') window.open(href,'_blank'); }); }
+
+    const mapBtn = document.getElementById('map-btn');
+    if(mapBtn){ mapBtn.addEventListener('click', ()=>{ location.hash = '#map'; }); }
+
+    // スクロールアニメーションを初期化
+    handleScrollAnimation();
+    window.addEventListener('scroll', handleScrollAnimation);
+  });
 
 })();
