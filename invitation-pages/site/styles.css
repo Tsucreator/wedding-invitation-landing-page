@@ -38,38 +38,20 @@
 .handwriting-text text {
   font-family: 'Great Vibes', cursive;
   font-size: 72px;
-  fill: none;
+  fill: #fff;
   stroke: #fff;
 }
 
-.text-path {
+.text-path, .text-stroke {
   stroke-width: 2;
   stroke-dasharray: 900;
   stroke-dashoffset: 900;
   animation: draw 3s ease forwards;
 }
 
-.text-stroke {
-  stroke-width: 0.5;
-  stroke-dasharray: 900;
-  stroke-dashoffset: 900;
-  animation: draw 3s ease forwards 0.3s, fillIn 1s ease forwards 3s;
-}
-
 @keyframes draw {
   to {
     stroke-dashoffset: 0;
-  }
-}
-
-@keyframes fillIn {
-  from {
-    fill: transparent;
-    stroke-width: 0.5;
-  }
-  to {
-    fill: #fff;
-    stroke-width: 0;
   }
 }
 
