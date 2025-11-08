@@ -1,0 +1,71 @@
+name: Deploy Static Invitation Site
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build & Deploy to S3 / Invalidate CloudFront
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # (optional if later switching to OIDC instead of long‑lived keys)
+    env:
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+      CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+      PROD_API_ENDPOINT: ${{ secrets.PROD_API_ENDPOINT }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate required secrets
+        run: |
+          missing=()
+          for v in AWS_REGION S3_BUCKET_NAME PROD_API_ENDPOINT; do
+            if [ -z "${!v}" ]; then missing+=("$v"); fi
+          done
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "Missing required secrets: ${missing[*]}" >&2
+            exit 1
+          fi
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Generate runtime config.json
+        run: |
+          jq --arg ep "$PROD_API_ENDPOINT" '.apiEndpoint = $ep' invitation-pages/site/config.sample.json > invitation-pages/site/config.json
+          echo "Generated config.json:" && cat invitation-pages/site/config.json
+
+      - name: Sync static site to S3
+        run: |
+          aws s3 sync invitation-pages/site "s3://$S3_BUCKET_NAME" \
+            --delete \
+            --exclude "*.psd" \
+            --exclude "*.ai" \
+            --exclude "*.xcf" \
+            --cache-control max-age=300
+
+      - name: Invalidate CloudFront
+        if: env.CLOUDFRONT_DISTRIBUTION_ID != ''
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+            --paths "/*"
+
+      - name: Summary
+        run: |
+          echo "Deployment complete." > summary.txt
+          echo "S3 Bucket: $S3_BUCKET_NAME" >> summary.txt
+          echo "API Endpoint injected: $PROD_API_ENDPOINT" >> summary.txt
+        shell: bash
+
+    # Optional: add a lightweight post-deploy curl check here if site is public

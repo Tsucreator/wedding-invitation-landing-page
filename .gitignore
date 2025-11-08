@@ -49,6 +49,9 @@ layer.zip
 .env.test.local
 .env.production.local
 
+# Do not commit real runtime config
+invitation-pages/site/config.json
+
 # Node (既存のNode.js関連ファイルがある場合のため)
 node_modules/
 npm-debug.log*

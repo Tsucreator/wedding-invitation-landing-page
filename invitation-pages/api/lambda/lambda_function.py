@@ -48,9 +48,28 @@ def write_to_spreadsheet(data):
 
 
 # --- (ここから下は元のメール送信コード) ---
+def normalize_attendance(value: str) -> str:
+    """フォームからの多様な値を『ご出席/ご欠席/未選択』に正規化する"""
+    if not value:
+        return "未選択"
+    v = str(value).strip().lower()
+    present_keys = {'attend', 'present', 'yes', 'true', 'ご出席', '出席', '参加'}
+    absent_keys = {'absent', 'no', 'false', 'ご欠席', '欠席', '不参加'}
+    if v in present_keys:
+        return "ご出席"
+    if v in absent_keys:
+        return "ご欠席"
+    # 日本語そのままが来た場合のフォールバック
+    if value in ['ご出席', '出席', '参加']:
+        return "ご出席"
+    if value in ['ご欠席', '欠席', '不参加']:
+        return "ご欠席"
+    return "未選択"
+
+
 def create_email_body(data):
     """メール本文を生成する"""
-    attendance = "ご出席" if data.get('attendance') == 'ご出席' else "ご欠席"
+    attendance = normalize_attendance(data.get('attendance'))
     
     body = f"""
 結婚式の出欠回答が届きました。
@@ -73,7 +92,7 @@ def send_email(data):
     sender = os.environ.get('SENDER_EMAIL')
     recipient = os.environ.get('RECIPIENT_EMAIL')
     aws_region = os.environ.get('AWS_REGION', 'ap-northeast-1')
-    attendance = "ご出席" if data.get('attendance') == 'ご出席' else "ご欠席"
+    attendance = normalize_attendance(data.get('attendance'))
 
     msg = MIMEMultipart()
     msg['Subject'] = f"結婚式出欠回答: {data.get('name')}様 ({attendance})"
@@ -109,6 +128,9 @@ def lambda_handler(event, context):
                 'headers': {'Access-Control-Allow-Origin': '*'},
                 'body': json.dumps({'error': f'必須項目が不足しています: {", ".join(missing)}'})
             }
+
+        # attendance を正規化（保存・通知の両方で統一された値に）
+        data['attendance'] = normalize_attendance(data.get('attendance'))
 
         # ★★★ ここからが修正箇所 ★★★
         
