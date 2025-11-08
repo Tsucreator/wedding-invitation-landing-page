@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Message GIF Test</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Scroll re-play logic without white flash (preload then swap)
+    document.addEventListener('DOMContentLoaded', () => {
+      const gif = document.getElementById('message-gif');
+      if (!gif || !gif.dataset.src) return;
+      const bust = (url) => url + (url.includes('?') ? '&' : '?') + 't=' + Date.now();
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            if(gif.dataset.playing === '1') return;
+            gif.dataset.playing = '1';
+            const nextUrl = bust(gif.dataset.src);
+            const pre = new Image();
+            pre.onload = ()=>{ gif.src = nextUrl; };
+            pre.src = nextUrl;
+          } else {
+            gif.dataset.playing = '0';
+          }
+        });
+      }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+      observer.observe(gif);
+    });
+  </script>
+  </div>
+  <script>
+    // Test page: initial lazy load (first time only) using same preload approach
+    document.addEventListener('DOMContentLoaded', () => {
+      const gif = document.getElementById('message-gif');
+      if(!gif || !gif.dataset.src) return;
+      const bust = (url) => url + (url.includes('?') ? '&' : '?') + 't=' + Date.now();
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            const nextUrl = bust(gif.dataset.src);
+            const pre = new Image();
+            pre.onload = ()=>{ gif.src = nextUrl; };
+            pre.src = nextUrl;
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      obs.observe(gif);
+    });
+  </script>
+</body>
+</html>

@@ -237,8 +237,8 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 }
 .subtitle {
   font-family: 'Great Vibes', cursive;
-  font-size: 36px;
-  margin: 20px 0;
+  font-size: 24px;
+  margin: 0px 0;
   font-weight: 400;
   letter-spacing: 2px;
   color: #fff;
@@ -247,14 +247,17 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
   animation: slideUp 1.5s ease 0.3s forwards;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
-.event-date {
-  font-family: 'Raleway', sans-serif;
-  color: #fff;
-  font-size: 20px;
+/* Hero section event date - higher specificity to override later styles */
+.hero .event-date {
+  font-family: 'Great Vibes', 'Rouge Script', cursive;
+  color: #fff !important;
+  font-size: 32px;
+  font-weight: 400;
   margin: 20px 0;
   opacity: 0;
   transform: translateY(20px);
   animation: slideUp 1.5s ease 0.6s forwards;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .countdown {
@@ -328,8 +331,8 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 100vh; /* スマホでは最低でも画面の高さ分を確保 */
-    height: auto; /* 内容に合わせて高さを可変に */
+    min-height: 100vh; /* スマホでは必ず画面の高さ分を確保 */
+    height: 100vh; /* 確実に画面いっぱいに */
   }
   .countdown {
     gap: 10px;
@@ -384,7 +387,14 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 
 /* Photo Slider */
 .photos {
-  padding: 60px 0;
+  padding: 80px 20px;
+  max-width: 100%;
+  margin: 0;
+  background: #f9fef9;
+  width: 100%;
+}
+
+.photo-slider-container {
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -567,13 +577,14 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .hero {
-    min-height: 500px;
+    min-height: 100vh;
+    height: 100vh;
   }
   .couple {
     font-size: 48px;
   }
   .subtitle {
-    font-size: 18px;
+    font-size: 24px;
   }
   .countdown {
     gap: 10px;
@@ -600,10 +611,91 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 
 /* Main container */
 .container {
-  max-width: var(--max-width);
-  margin: 40px auto;
-  padding: 0 16px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   text-align: center;
+}
+
+/* Section Background Colors */
+.greeting {
+  background: #fef9f3; /* 薄いベージュ */
+  padding: 20px 20px 60px; /* 上を減らしてGIFと文章の距離を縮める */
+  margin: 0;
+  width: 100%;
+}
+
+.greeting > * {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Message video wrapper */
+.message-video-wrapper {
+  max-width: 400px;
+  margin: 0 auto 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.message-video-wrapper video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* Message GIF wrapper (overlap adjustment) */
+.message-gif-wrapper {
+  max-width: 320px; /* smaller size */
+  margin: -70px auto 8px; /* stronger upward overlap, minimal bottom space */
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 5; /* ensure it stays above background elements */
+}
+
+.message-gif-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+@media (max-width: 540px) {
+  .message-gif-wrapper { 
+    max-width: 240px; 
+    margin: -50px auto 6px; /* stronger overlap on small screens */
+  }
+}
+
+.event-info {
+  padding: 80px 20px;
+  background: #f0f7ff; /* 薄い青 */
+  width: 100%;
+  margin: 0;
+}
+
+.photos {
+  padding: 80px 20px;
+  max-width: 100%;
+  margin: 0;
+  background: #f9fef9; /* 薄い緑 */
+  width: 100%;
+}
+
+.rsvp {
+  background: #fff5f8; /* 薄いピンク */
+  max-width: 100%;
+  margin: 0;
+  padding: 80px 20px;
+  width: 100%;
+}
+
+.map {
+  background: #faf9ff; /* 薄い紫 */
+  padding: 80px 20px;
+  margin: 0;
+  width: 100%;
 }
 h2, h3 {
   color: var(--accent);
@@ -613,100 +705,509 @@ h2, h3 {
   margin-bottom: 1em;
   letter-spacing: 0.02em;
 }
-.greeting {
-  max-width: 800px;
-  margin: 0 auto 80px;
-}
-.greeting p {
-  margin: 0;
-  font-size: 1.2em;
-  line-height: 2;
-  letter-spacing: 0.03em;
-  font-weight: 300;
-}
-.details {
-  max-width: 600px;
-  margin: 0 auto 60px;
-}
-.details ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: inline-block;
-  text-align: left;
-}
-.details li {
-  margin-bottom: 1em;
-  font-size: 1.1em;
-  display: flex;
-  align-items: baseline;
-  gap: 1em;
-}
-.details li strong {
-  color: var(--accent);
-  min-width: 80px;
+/* Event Information Section - Dear-Guest Style */
+.event-info {
+  padding: 80px 20px;
+  background: #f0f7ff;
 }
 
-.rsvp {
-  max-width: 600px;
-  margin: 60px auto;
-  background: var(--card);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 20px 40px rgba(16,11,12,0.08);
-}
-.rsvp h3 {
-  margin-top: 0;
-}
-form {
-  text-align: left;
-  max-width: 400px;
+.info-container {
+  max-width: 1200px;
   margin: 0 auto;
 }
-form label {
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.en-heading {
   display: block;
-  margin-bottom: 20px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 2.5em;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.jp-heading {
+  display: block;
+  font-family: 'Noto Serif JP', serif;
   font-size: 1.1em;
   color: var(--muted);
+  font-weight: 300;
 }
-input[type=text], input[type=email], textarea {
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.event-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 40px 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.event-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.card-icon {
+  font-size: 40px;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.card-title {
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+.card-title .en {
+  display: block;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.4em;
+  color: #333;
+  margin-bottom: 5px;
+  letter-spacing: 0.05em;
+}
+
+.card-title .jp {
+  display: block;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.9em;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.card-body {
+  color: #333;
+  line-height: 1.8;
+}
+
+.event-date {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.8em;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.day-of-week {
+  font-size: 0.6em;
+  color: var(--muted);
+  margin-left: 10px;
+}
+
+.event-schedule {
+  text-align: left;
+  display: inline-block;
+  margin: 20px 0;
+}
+
+.event-schedule p {
+  margin: 8px 0;
+  font-size: 1.1em;
+}
+
+.schedule-label {
+  display: inline-block;
+  min-width: 60px;
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+.event-note {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed #ddd;
+  font-size: 0.9em;
+  color: var(--muted);
+}
+
+.venue-name {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.venue-room {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1em;
+  padding: 10px 20px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.map-link:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.facility-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  text-align: left;
+}
+
+.facility-item h5 {
+  color: var(--accent);
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.facility-item p {
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.facility-item a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.facility-item a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .event-info {
+    padding: 60px 15px;
+  }
+
+  .en-heading {
+    font-size: 1.8em;
+  }
+
+  .event-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .event-card {
+    padding: 30px 20px;
+  }
+
+  .facility-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.greeting {
+  max-width: 100%;
+  margin: 0;
+  padding: 20px 20px 60px; /* 上を減らしてGIFと文章の距離を縮める */
+  background: #fef9f3;
+  text-align: center;
+  width: 100%;
+}
+
+.greeting > * {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.greeting h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.greeting p {
+  margin: 0;
+  font-size: 1.1em;
+  line-height: 2.2;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+  text-align: left;
+}
+
+/* RSVP Section - Dear-Guest Style */
+.rsvp {
+  max-width: 100%;
+  margin: 0;
+  padding: 80px 20px;
+  background: #fff5f8;
+  width: 100%;
+}
+
+.rsvp-intro {
+  text-align: center;
+  margin-bottom: 50px;
+  line-height: 2;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rsvp-intro p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.rsvp-intro .deadline {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+}
+
+.rsvp-intro strong {
+  color: var(--accent);
+  font-size: 1.1em;
+}
+
+form {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-section-title {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.attendance-select {
+  border: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.radio-label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.radio-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.form-note {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 30px;
+  font-size: 0.9em;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-label {
+  display: block;
+  font-size: 1em;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.label-en {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-left: 8px;
+  font-weight: 300;
+}
+
+input[type=text], 
+input[type=email], 
+input[type=tel], 
+textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #efe9ee;
-  border-radius: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   background: #fff;
   font-size: 1em;
+  font-family: 'Noto Serif JP', serif;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 8px;
 }
-input[type=text]:focus, input[type=email]:focus, textarea:focus {
+
+input[type=text]:focus, 
+input[type=email]:focus, 
+input[type=tel]:focus, 
+textarea:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
 }
-.attendance {
-  border: 0;
-  padding: 20px 0;
-  margin: 20px 0;
-  text-align: center;
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
 }
-.attendance legend {
-  text-align: left;
-  color: var(--muted);
-  font-size: 1.1em;
-  margin-bottom: 15px;
-}
-.attendance label {
-  display: inline-block;
-  margin: 0 15px;
-}
+
 .form-actions {
-  margin-top: 30px;
+  margin-top: 50px;
   text-align: center;
 }
-button{background:var(--accent);color:#fff;padding:10px 16px;border:0;border-radius:8px;cursor:pointer}
-.response{margin-top:12px;color:green}
-.map-embed{height:320px;background:#eee;border-radius:8px;overflow:hidden}
+
+.submit-btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 16px 60px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.submit-btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59,130,246,0.3);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.btn-en {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.7em;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+}
+
+.response {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.response.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.response.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 768px) {
+  .rsvp {
+    padding: 60px 20px;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 16px 40px;
+  }
+  
+  .greeting {
+    padding: 15px 20px 40px; /* モバイルでも上を削減 */
+  }
+  
+  .event-info {
+    padding: 60px 15px;
+  }
+  
+  .photos {
+    padding: 60px 15px;
+  }
+  
+  .map {
+    padding: 60px 15px;
+  }
+}
+
+.map {
+  background: #faf9ff;
+  padding: 80px 20px;
+  margin: 0;
+  width: 100%;
+}
+
+.map h3 {
+  margin-top: 0;
+  margin-bottom: 40px;
+}
+
+.map-embed{height:320px;background:#eee;border-radius:8px;overflow:hidden;max-width:1000px;margin:0 auto;}
 .map-embed iframe{width:100%;height:100%;border:0}
 .deadline{font-weight:600;color:var(--muted)}
 .site-footer{margin:40px 0 80px;text-align:center;color:#888}
@@ -717,7 +1218,7 @@ button{background:var(--accent);color:#fff;padding:10px 16px;border:0;border-rad
 }
 
 @media(max-width:720px){
-  .couple{font-size:40px}
+  .couple{font-size:54px}
   .hero-inner{flex-direction:column;align-items:center;text-align:center}
   .hero-decor{display:none}
   

@@ -16,7 +16,13 @@
     if(eventDateEl && config.eventDateISO){
       try{
         const d = new Date(config.eventDateISO);
-        if(!isNaN(d)) eventDateEl.textContent = d.toLocaleDateString('ja-JP', { year:'numeric', month:'long', day:'numeric' });
+        if(!isNaN(d)) {
+          // Format as YYYY.M.D (no leading zeros)
+          const year = d.getFullYear();
+          const month = d.getMonth() + 1;
+          const day = d.getDate();
+          eventDateEl.textContent = `${year}.${month}.${day}`;
+        }
       }catch(e){}
     }
     // initialize countdown
@@ -281,6 +287,36 @@
     // スクロールアニメーションを初期化
     handleScrollAnimation();
     window.addEventListener('scroll', handleScrollAnimation);
+
+    // --- Scroll-triggered GIF reload without white flash ---
+    // Strategy: Preload a cache-busted URL off-DOM, then swap src only after it's decoded.
+    // This avoids showing a blank/placeholder frame between restarts.
+    (function initScrollReplayGif(){
+      const el = document.getElementById('message-gif');
+      if(!el || !el.dataset.src) return;
+      // If this is the very first render and src is empty (or same as page), keep placeholder from HTML.
+      function bust(url){ return url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(); }
+
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            if(el.dataset.playing === '1') return; // already started during this visibility window
+            el.dataset.playing = '1';
+            const nextUrl = bust(el.dataset.src);
+            const pre = new Image();
+            pre.decoding = 'sync';
+            pre.onload = ()=>{
+              // Only swap after decode to prevent flash
+              el.src = nextUrl;
+            };
+            pre.src = nextUrl;
+          } else {
+            el.dataset.playing = '0';
+          }
+        });
+      }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+      observer.observe(el);
+    })();
   });
 
 })();

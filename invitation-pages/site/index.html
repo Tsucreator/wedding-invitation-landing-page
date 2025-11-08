@@ -6,7 +6,9 @@
   <title>Shinnnosuke &amp; Kaho's Wedding</title>
   <link rel="stylesheet" href="styles.css">
   <!-- Google Fonts used by the reference design -->
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Rouge+Script&family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Rouge+Script&family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;500&family=Cinzel:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="initial-overlay">
@@ -15,25 +17,25 @@
         <g class="text-group" transform="translate(400, 120)">
           <!-- First line: Shinnosuke & Kaho -->
           <text class="letter" x="-280" text-anchor="middle">S</text>
-          <text class="letter" x="-240" text-anchor="middle">h</text>
-          <text class="letter" x="-210" text-anchor="middle">i</text>
+          <text class="letter" x="-245" text-anchor="middle">h</text>
+          <text class="letter" x="-220" text-anchor="middle">i</text>
           <text class="letter" x="-190" text-anchor="middle">n</text>
           <text class="letter" x="-160" text-anchor="middle">n</text>
-          <text class="letter" x="-130" text-anchor="middle">o</text>
-          <text class="letter" x="-100" text-anchor="middle">s</text>
-          <text class="letter" x="-70" text-anchor="middle">u</text>
-          <text class="letter" x="-40" text-anchor="middle">k</text>
-          <text class="letter" x="-10" text-anchor="middle">e</text>
-          <text class="letter" x="30" text-anchor="middle">&</text>
-          <text class="letter" x="80" text-anchor="middle">K</text>
-          <text class="letter" x="110" text-anchor="middle">a</text>
-          <text class="letter" x="140" text-anchor="middle">h</text>
-          <text class="letter" x="170" text-anchor="middle">o</text>
+          <text class="letter" x="-132" text-anchor="middle">o</text>
+          <text class="letter" x="-106" text-anchor="middle">s</text>
+          <text class="letter" x="-80" text-anchor="middle">u</text>
+          <text class="letter" x="-55" text-anchor="middle">k</text>
+          <text class="letter" x="-30" text-anchor="middle">e</text>
+          <text class="letter" x="0" text-anchor="middle">&</text>
+          <text class="letter" x="30" text-anchor="middle">K</text>
+          <text class="letter" x="55" text-anchor="middle">a</text>
+          <text class="letter" x="80" text-anchor="middle">h</text>
+          <text class="letter" x="105" text-anchor="middle">o</text>
         </g>
         <g class="text-group" transform="translate(400, 200)">
           <!-- Second line: We're Getting Married !! -->
-          <text class="letter-second" x="-260" text-anchor="middle">W</text>
-          <text class="letter-second" x="-225" text-anchor="middle">e</text>
+          <text class="letter-second" x="-260" text-anchor="middle">O</text>
+          <text class="letter-second" x="-225" text-anchor="middle">u</text>
           <text class="letter-second" x="-205" text-anchor="middle">'</text>
           <text class="letter-second" x="-185" text-anchor="middle">r</text>
           <text class="letter-second" x="-165" text-anchor="middle">e</text>
@@ -81,7 +83,7 @@
       <div class="hero-content">
         <h1 class="couple">Shinnosuke &amp; Kaho</h1>
         <p class="subtitle">We're Getting Married !!</p>
-        <p class="event-date" id="event-date">2026年3月20日</p>
+        <p class="event-date" id="event-date">2026.03.20</p>
         <div class="countdown" id="countdown" aria-hidden="false">
           <div class="countdown-item"><span class="num" id="cd-days">--</span><span class="label">Days</span></div>
           <div class="countdown-item"><span class="num" id="cd-hours">--</span><span class="label">Hours</span></div>
@@ -89,7 +91,7 @@
           <div class="countdown-item"><span class="num" id="cd-secs">--</span><span class="label">Seconds</span></div>
         </div>
         <div class="hero-actions">
-          <a class="btn ghost" id="map-btn" href="#map">会場を見る</a>
+          <a class="btn ghost" id="map-btn" href="https://urayasu.brightonhotels.co.jp/bridal/hall/index.html" target="_blank" rel="noopener noreferrer">会場を見る</a>
           <a class="btn" id="calendar-btn" href="#">カレンダーに追加</a>
         </div>
       </div>
@@ -98,19 +100,97 @@
 
   <main class="container">
     <section class="greeting fade-in-section">
-      <h2>ご挨拶</h2>
-      <p>親愛なる皆様へ。私たちの結婚式にぜひご出席いただきたく、ご案内申し上げます。以下のフォームよりご回答ください。</p>
+      <!-- Handwriting GIF for Message heading -->
+      <div class="message-gif-wrapper">
+        <img
+          id="message-gif"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+          data-src="animation/Message.gif"
+          alt="Message handwritten animation"
+        />
+      </div>
+      <p>皆様いかがお過ごしでしょうか このたび結婚式を執り行うこととなりました。<br>
+      日頃お世話になっております皆様に、私どもの門出をお見守りいただきたく、ささやかながら小宴を催したく存じます。<br>
+      ご多用中、誠に恐縮ではございますが、ぜひご出席いただきたくご案内申し上げます。</p>
     </section>
+    <section class="event-info fade-in-section">
+      <div class="info-container">
+        <h2 class="section-heading">
+          <span class="en-heading">EVENTS</span>
+          <span class="jp-heading">挙式・披露宴のご案内</span>
+        </h2>
+        
+        <div class="event-grid">
+          <div class="event-card">
+            <div class="card-icon">
+              <i class="far fa-calendar-alt"></i>
+            </div>
+            <h4 class="card-title">
+              <span class="en">Date & Time</span>
+              <span class="jp">日時</span>
+            </h4>
+            <div class="card-body">
+              <p class="event-date">2026.03.20 <span class="day-of-week">Friday</span></p>
+              <div class="event-schedule">
+                <p><span class="schedule-label">受付</span>9:30〜</p>
+                <p><span class="schedule-label">挙式</span>10:00〜</p>
+                <p><span class="schedule-label">披露宴</span>11:00〜13:00</p>
+              </div>
+              <p class="event-note">※午前9時40分までに3階控室にお揃いください</p>
+            </div>
+          </div>
 
-    <section class="details fade-in-section">
-      <h3>日時と場所</h3>
-      <ul>
-        <li><strong>日時</strong>: 2026年3月20日 (金)</li>
-        <li><strong>受付</strong>: 9:30〜</li>
-        <li><strong>挙式</strong>: 10:00〜</li>
-        <li><strong>披露宴</strong>: 11:00〜</li>
-        <li><strong>場所</strong>: 〇〇迎賓館 △△の間</li>
-      </ul>
+          <div class="event-card">
+            <div class="card-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h4 class="card-title">
+              <span class="en">Venue</span>
+              <span class="jp">会場</span>
+            </h4>
+            <div class="card-body">
+              <p class="venue-name">〇〇迎賓館</p>
+              <p class="venue-room">△△の間</p>
+              <a href="#map" class="map-link">
+                <i class="fas fa-map"></i> 会場案内を見る
+              </a>
+            </div>
+          </div>
+
+          <div class="event-card full-width">
+            <div class="card-icon">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <h4 class="card-title">
+              <span class="en">Facility Information</span>
+              <span class="jp">施設のご案内</span>
+            </h4>
+            <div class="card-body">
+              <div class="facility-grid">
+                <div class="facility-item">
+                  <h5>クローク（お荷物預かり）</h5>
+                  <p>ホテル2階披露宴会場前のクロークをご利用ください</p>
+                </div>
+                <div class="facility-item">
+                  <h5>更衣室</h5>
+                  <p>ホテル2階に男性用・女性用着替室のご用意がございます</p>
+                </div>
+                <div class="facility-item">
+                  <h5>着付・ヘアセット・メイク</h5>
+                  <p>ご用命の際は事前にご予約ください<br>
+                  3階メイクスタジオ<br>
+                  <a href="tel:047-350-8392" class="tel-link">TEL: 047-350-8392（直通）</a></p>
+                </div>
+                <div class="facility-item">
+                  <h5>アレルギー対応</h5>
+                  <p>28品目の食材に限り対応をいたしております<br>
+                  <a href="https://www.youtube.com/watch?v=fk5kUTYP828" target="_blank" rel="noopener" class="external-link">詳細はこちらをご確認ください</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="photos fade-in-section">
@@ -154,25 +234,105 @@
     </section>
 
     <section class="rsvp fade-in-section">
-      <h3>出欠回答フォーム</h3>
-      <p class="deadline" id="deadline">回答締切: <span id="deadline-date"></span></p>
+      <h2 class="section-heading">
+        <span class="en-heading">RSVP</span>
+        <span class="jp-heading">出欠のご連絡</span>
+      </h2>
+      
+      <div class="rsvp-intro">
+        <p>郵送でのご案内状に代わり、当招待状をお送りしております。<br>
+        お手数ではございますが、出席情報のご登録をお願い申し上げます。<br>
+        また当日のお食事のご用意にあたり、アレルギー等がある方は、アレルギー欄にご記入くださいますようお願い申し上げます。</p>
+        <p class="deadline" id="deadline"><strong><span id="deadline-date"></span>までにご一報賜りますようお願い申し上げます</strong></p>
+      </div>
 
-      <form id="rsvp-form" novalidate class="fade-in-section">
-        <label>お名前 <input type="text" name="name" id="name" required placeholder="山田 太郎"></label>
-        <label>ふりがな <input type="text" name="kana" id="kana" required placeholder="やまだ たろう"></label>
-
-        <fieldset class="attendance">
-          <legend>ご出席 / ご欠席 (必須)</legend>
-          <label><input type="radio" name="attendance" value="attend" required> ご出席</label>
-          <label><input type="radio" name="attendance" value="absent"> ご欠席</label>
+      <form id="rsvp-form" novalidate>
+        <fieldset class="attendance-select">
+          <legend class="form-section-title">出欠のご連絡 *</legend>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="attendance" value="attend" required>
+              <span class="radio-custom"></span>
+              <span class="radio-text">出席</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="attendance" value="absent">
+              <span class="radio-custom"></span>
+              <span class="radio-text">欠席</span>
+            </label>
+          </div>
         </fieldset>
 
-        <label>メールアドレス <input type="email" name="email" id="email" required placeholder="you@example.com"></label>
-        <label>アレルギー <textarea name="allergy" id="allergy" rows="2" placeholder="例: 卵、乳"></textarea></label>
-        <label>メッセージ <textarea name="message" id="message" rows="3" placeholder="一言メッセージ"></textarea></label>
+        <div class="form-note">*は必須項目です</div>
+
+        <div class="form-group">
+          <label class="form-label">
+            お名前 * <span class="label-en">Name</span>
+            <input type="text" name="name" id="name" required placeholder="山田 太郎">
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            ふりがな <span class="label-en">Kana</span>
+            <input type="text" name="kana" id="kana" placeholder="やまだ たろう">
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            郵便番号 <span class="label-en">Postcode</span>
+            <input type="text" name="postcode" id="postcode" placeholder="123-4567">
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            住所 <span class="label-en">Address</span>
+            <input type="text" name="address" id="address" placeholder="東京都渋谷区〇〇">
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            建物名 <span class="label-en">Building</span>
+            <input type="text" name="building" id="building" placeholder="〇〇マンション101号室">
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            電話番号 <span class="label-en">Phone number</span>
+            <input type="tel" name="phone" id="phone" placeholder="090-1234-5678">
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            メールアドレス * <span class="label-en">Email Address</span>
+            <input type="email" name="email" id="email" required placeholder="you@example.com">
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            アレルギー <span class="label-en">Allergy</span>
+            <textarea name="allergy" id="allergy" rows="3" placeholder="例: 卵、乳製品、えび"></textarea>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            メッセージ <span class="label-en">Message</span>
+            <textarea name="message" id="message" rows="4" placeholder="お二人へのメッセージをお聞かせください"></textarea>
+          </label>
+        </div>
 
         <div class="form-actions">
-          <button type="submit" id="submit">送信</button>
+          <button type="submit" id="submit" class="submit-btn">
+            <span>送信する</span>
+            <span class="btn-en">SUBMIT</span>
+          </button>
         </div>
       </form>
 
@@ -193,5 +353,6 @@
   </footer>
 
   <script src="script.js" defer></script>
+  <!-- Message GIF requires no JS; autoplay handled by browser -->
 </body>
 </html>
