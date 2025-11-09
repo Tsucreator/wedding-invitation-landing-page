@@ -45,4 +45,4 @@ jobs:
       # 5. Lambda関数を更新
       - name: Deploy to Lambda
         run: |
-          aws lambda update-function-code --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} --zip-file fileb://backend/lambda-deployment.zip
+          aws lambda update-function-code --function-name ${{ secrets.LAMBDA_FUNCTION_NAME }} --zip-file fileb://invitation-pages/api/lambda/lambda-deployment.zip
