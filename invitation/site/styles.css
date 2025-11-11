@@ -9,6 +9,10 @@
   --gradient-end:#172554;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Initial Loading Animation - WelcomeTo GIF */
 .initial-overlay {
   position: fixed;
@@ -529,7 +533,9 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 .fade-in-section {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 1s ease;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
 }
 .fade-in-section.is-visible {
   opacity: 1;
@@ -555,6 +561,11 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
   to {
     opacity: 1;
   }
+}
+
+/* Smoother transitions for all interactive elements */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Mobile Responsive */

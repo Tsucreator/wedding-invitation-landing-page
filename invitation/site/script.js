@@ -193,16 +193,22 @@
     return url;
   }
 
-  // Scroll animation for sections
+  // Scroll animation for sections with throttling for smoother performance
+  let scrollTimeout;
   function handleScrollAnimation() {
-    const sections = document.querySelectorAll('.fade-in-section');
-    sections.forEach(section => {
-      const sectionTop = section.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      if (sectionTop < windowHeight * 0.85) { // Show when 85% visible
-        section.classList.add('is-visible');
-      }
-    });
+    if (scrollTimeout) return;
+    
+    scrollTimeout = setTimeout(() => {
+      const sections = document.querySelectorAll('.fade-in-section');
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (sectionTop < windowHeight * 0.85) { // Show when 85% visible
+          section.classList.add('is-visible');
+        }
+      });
+      scrollTimeout = null;
+    }, 50); // 50msごとに実行（より滑らかに）
   }
 
   // ヒーローイメージのスライドショー
