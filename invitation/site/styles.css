@@ -267,7 +267,7 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 600px;
+    min-height: 700px;
     height: auto;
   }
   .countdown {
@@ -582,7 +582,7 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .hero {
-    min-height: 600px;
+    min-height: 700px;
     height: auto;
   }
   .couple {
