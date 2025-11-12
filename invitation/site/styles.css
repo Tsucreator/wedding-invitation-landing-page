@@ -737,6 +737,32 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
   margin: 0;
 }
 
+/* Profile GIF wrapper */
+.profile-gif-wrapper {
+  width: 60%;
+  max-width: 400px;
+  margin: 0 auto 30px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+.profile-gif-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+@media (max-width: 540px) {
+  .profile-gif-wrapper { 
+    width: 60%;
+    max-width: 250px;
+    margin: 0 auto 20px;
+  }
+}
+
 .profile-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

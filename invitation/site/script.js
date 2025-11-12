@@ -481,6 +481,12 @@
         assetsToLoad.push(messageGif.dataset.src);
       }
       
+      // Profile GIF
+      const profileGif = document.getElementById('profile-gif');
+      if (profileGif && profileGif.dataset.src) {
+        assetsToLoad.push(profileGif.dataset.src);
+      }
+      
       // Hero images
       const heroImages = document.querySelectorAll('.hero-img');
       heroImages.forEach(img => {
@@ -553,9 +559,9 @@
     handleHeroParallax();
     window.addEventListener('scroll', handleHeroParallax, { passive: true });
 
-    // --- Message GIF: Load once on first view, then reload on subsequent views ---
-    (function initScrollReplayGif(){
-      const el = document.getElementById('message-gif');
+    // --- GIF replay helper function ---
+    function setupGifReplay(elementId) {
+      const el = document.getElementById(elementId);
       if(!el || !el.dataset.src) return;
       
       let isFirstLoad = true;
@@ -587,7 +593,11 @@
         });
       }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
       observer.observe(el);
-    })();
+    }
+    
+    // Setup GIF replay for Message and Profile
+    setupGifReplay('message-gif');
+    setupGifReplay('profile-gif');
   });
 
 })();
