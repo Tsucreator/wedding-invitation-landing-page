@@ -1,15 +1,12 @@
-// Simple client-side logic for RSVP form.
 (function(){
-  const cfgPath = 'config.json';
-  let config = { apiEndpoint: '', deadline: '202X-XX-XX', eventDateISO: '' };
-
-  function $(id){ return document.getElementById(id); }
+  const config = { apiEndpoint: '', deadline: '202X-XX-XX', eventDateISO: '' };
+  const $ = id => document.getElementById(id);
 
   async function loadConfig(){
     try{
-      const res = await fetch(cfgPath);
-      if(res.ok) config = await res.json();
-    }catch(e){ /* ignore, use defaults */ }
+      const res = await fetch('config.json');
+      if(res.ok) Object.assign(config, await res.json());
+    }catch(e){}
     $('deadline-date').textContent = config.deadline || '未設定';
     // show event date if available
     const eventDateEl = document.getElementById('event-date');

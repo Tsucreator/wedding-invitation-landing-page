@@ -715,10 +715,12 @@ main {
   background-color: #3a3a3a; /* ライトグレー */
 }
 
-/* Section Background Colors */
+/* Greeting Section - Unified */
 .greeting {
-  padding: 50px 20px 60px; /* 上部paddingを半分に減らして上部に移動 */
+  max-width: 100%;
   margin: 0;
+  padding: 50px 20px 60px;
+  text-align: center;
   width: 100%;
   position: relative;
   display: flex;
@@ -1166,35 +1168,6 @@ h2, h3 {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-}
-
-.greeting {
-  max-width: 100%;
-  margin: 0;
-  padding: 10px 20px 60px; /* 上部paddingを半分に減らして上部に移動 */
-  text-align: center;
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.greeting::before {
-  content: '';
-  position: absolute;
-  top: 45%; /* 位置を下げる */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 1000px;
-  height: 120%;
-  background-image: url('image/message_back.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
-  pointer-events: none;
 }
 
 .greeting > * {
