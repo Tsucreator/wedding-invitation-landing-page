@@ -487,20 +487,31 @@
 
   // Remove initial overlay after assets are loaded AND minimum 3.5 seconds
   async function removeInitialOverlay() {
-    const startTime = Date.now();
-    const minDisplayTime = 3500; // 最低3.5秒表示
+    const minDisplayTime = 3500;
+    const video = document.querySelector('.welcome-animation');
     
-    // アセットロードと最低表示時間の両方を待つ
+    // Wait for video to end or minimum time, whichever is longer
     await Promise.all([
       preloadAssets(),
-      new Promise(resolve => setTimeout(resolve, minDisplayTime))
+      new Promise(resolve => {
+        if (video && video.tagName === 'VIDEO') {
+          const checkVideoEnd = () => {
+            if (window.videoEnded || video.ended) {
+              setTimeout(resolve, Math.max(0, minDisplayTime - video.currentTime * 1000));
+            } else {
+              setTimeout(checkVideoEnd, 100);
+            }
+          };
+          checkVideoEnd();
+        } else {
+          setTimeout(resolve, minDisplayTime);
+        }
+      })
     ]);
     
     const overlay = document.querySelector('.initial-overlay');
     if (overlay) {
-      // Add loaded class to trigger fade-out
       overlay.classList.add('loaded');
-      // After fade-out completes, remove from DOM
       setTimeout(() => {
         overlay.remove();
       }, 1200);

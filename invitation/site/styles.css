@@ -50,6 +50,13 @@ html {
   object-fit: contain;
 }
 
+.welcome-animation video {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  object-fit: contain;
+}
+
 @keyframes fadeOutOverlay {
   0% {
     opacity: 1;
