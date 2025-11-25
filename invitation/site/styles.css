@@ -69,7 +69,7 @@ html {
 }
 
 *{box-sizing:border-box}
-body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;color:#222;margin:0;background:var(--bg);font-weight:300}
+body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;line-height:1.6;color:#222;margin:0;background:var(--bg);font-weight:300}
 
 /* Hero */
 .hero {
@@ -270,19 +270,17 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 
 .countdown-to .to-text {
   font-weight: 300;
-  font-size: 25.2px; /* 90% of 28px */
+  font-size: 25.2px;
   color: #000;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.5px;
+  font-family: 'Noto Sans JP', sans-serif;
   margin-right: 8px;
 }
 
 .countdown-to .to-label {
-  font-weight: 400;
-  font-size: 32.2px; /* 115% of 28px */
+  font-weight: 500;
+  font-size: 32.2px;
   color: #000;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.5px;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .countdown-days {
@@ -292,20 +290,18 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 
 .countdown-days .num {
   font-weight: 600;
-  font-size: 129.6px; /* 150% of 86.4px */
+  font-size: 129.6px;
   color: #000;
-  font-family: 'Cinzel', serif;
+  font-family: 'Noto Sans JP', sans-serif;
   line-height: 1;
   margin-right: 10px;
-  letter-spacing: 1px;
 }
 
 .countdown-days .label {
   font-size: 32px;
   color: #000;
   font-weight: 400;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 2px;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .countdown-time {
@@ -321,17 +317,16 @@ body{font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;line-height:1.6;c
 
 .time-item .num {
   font-weight: 500;
-  font-size: 36px; /* 150% of 24px */
+  font-size: 36px;
   color: #000;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .time-item .label {
   font-size: 14px;
   color: #000;
   font-weight: 300;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 
