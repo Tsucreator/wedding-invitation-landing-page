@@ -69,12 +69,12 @@ html {
 }
 
 *{box-sizing:border-box}
-body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;line-height:1.6;color:#222;margin:0;background:var(--bg);font-weight:300}
+body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;line-height:1.6;color:#222;margin:0;background:var(--bg);font-weight:300;font-size:16px}
 
 /* Hero */
 .hero {
   position: relative;
-  height: 100vh;
+  height: 700px;
   min-height: 700px;
   overflow: hidden;
   background: #000;
@@ -110,8 +110,8 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
 
 @media (max-width: 480px) {
   .hero {
-    min-height: 100vh;
-    height: 100vh;
+    min-height: 600px;
+    height: 600px;
   }
   
   .hero-images {
@@ -215,7 +215,7 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   position: relative;
   padding: 150px 0;
   background: #fff;
-  min-height: 80vh;
+  min-height: 600px;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
 }
@@ -227,7 +227,7 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('image/countdown_bg_image.png');
+  background-image: url('image/countdown_bg_image.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -241,7 +241,7 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   padding: 0 20px;
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -285,7 +285,7 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
 
 .countdown-days {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .countdown-days .num {
@@ -330,6 +330,10 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
 }
 
 
+
+
+
+
 @media (max-width: 768px) {
   .hero {
     min-height: 700px;
@@ -337,16 +341,16 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   }
   
   .countdown-section {
-    padding: 20px 0 0 0;
+    padding: 57px 0 0 0;
     min-height: 100vh;
-    display: flex;
+    display: inline-block;
     align-items: flex-start;
     justify-content: center;
   }
   
   .countdown-section > * {
-    padding: 0 15px;
-    padding-top: 15%; /* 5%上部に移動 */
+    padding: 0 0px;
+    padding-top: 0%; /* 5%上部に移動 */
   }
   
   .countdown-section::before {
@@ -365,7 +369,7 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   }
   
   .countdown-to .to-label {
-    font-size: 23px; /* 115% of 20px */
+    font-size: 27px; /* 115% of 20px */
   }
   
   .countdown-days .num {
@@ -721,25 +725,25 @@ main {
 .greeting {
   max-width: 100%;
   margin: 0;
-  padding: 50px 20px 60px;
+  padding: 80px 20px 120px;
   text-align: center;
   width: 100%;
+  min-height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .greeting::before {
   content: '';
   position: absolute;
-  top: 45%; /* 位置を下げる */
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 1400px;
-  height: 250%; /* 背景をさらに大きく */
-  background-image: url('image/message_back.png');
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  background-image: url('image/message_bg_image.webp');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -843,8 +847,8 @@ main {
 
 /* Profile Section */
 .profile {
-  padding: 80px 20px;
-  background: #fff;
+  padding: 120px 20px 80px;
+  background: linear-gradient(to bottom, #3a3a3a 0%, rgba(58, 58, 58, 0.8) 30%, rgba(255, 255, 255, 0.9) 70%, #fff 100%);
   width: 100%;
   margin: 0;
 }
@@ -885,21 +889,23 @@ main {
 }
 
 .profile-card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 30px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 20px;
   text-align: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  box-shadow: none;
 }
 
 .avatar {
-  width: 180px;
-  height: 180px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 0 auto 20px;
+  margin: 0 auto 25px;
   background: #f5f5f5;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .avatar img {
@@ -910,9 +916,9 @@ main {
 }
 
 .name {
-  font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+  font-family: 'Noto Sans JP', sans-serif;
   font-weight: 500;
-  margin: 10px 0 8px;
+  margin: 10px 0 15px;
   line-height: 1.3;
 }
 
@@ -937,17 +943,34 @@ main {
 @media (max-width: 720px) {
   .profile-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 30px;
+  }
+  
+  .avatar {
+    width: 220px;
+    height: 220px;
   }
 }
 
 @media (max-width: 540px) {
   .avatar {
-    width: 140px;
-    height: 140px;
+    width: 200px;
+    height: 200px;
   }
   .bio {
     font-size: 0.9em;
+  }
+  
+  .profile {
+    padding: 80px 20px 60px;
+  }
+  
+  .greeting {
+    padding: 60px 20px 80px;
+  }
+  
+  .profile-grid {
+    gap: 40px;
   }
 }
 h2, h3 {
