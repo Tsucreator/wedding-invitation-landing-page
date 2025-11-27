@@ -111,7 +111,7 @@ h2, h3 {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 25vh;
+  padding-top: 18vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -181,11 +181,12 @@ h2, h3 {
 }
 
 .section-content p {
-  font-size: clamp(14px, 3vw, 16px);
-  line-height: 1.8;
+  font-size: clamp(18px, 4vw, 21px);
+  line-height: 2;
   color: #fff;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-  margin: 20px 0;
+  margin: 21vh 0 20px;
+  padding: 0 40px;
   opacity: 0;
   transform: translateY(20px);
   animation: slideUp 1.5s ease 1.2s forwards;
@@ -205,6 +206,7 @@ h2, h3 {
   width: 100%;
   max-width: 600px;
   padding: 0 10px;
+  font-family: 'Old Standard TT', 'Noto Serif JP', serif;
 }
 
 .countdown-section {
@@ -222,23 +224,23 @@ h2, h3 {
 
 .countdown-to {
   text-align: center;
-  margin-bottom: 15px;
+  margin: 10px 0;
 }
 
 .countdown-to .to-text {
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(20px, 4vw, 25.2px);
   color: #fff;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Old Standard TT', 'Noto Serif JP', serif;
   margin-right: 8px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .countdown-to .to-label {
-  font-weight: 500;
+  font-weight: 700;
   font-size: clamp(24px, 5vw, 32.2px);
   color: #fff;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Old Standard TT', 'Noto Serif JP', serif;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
@@ -248,10 +250,10 @@ h2, h3 {
 }
 
 .countdown-days .num {
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(80px, 15vw, 129.6px);
   color: #fff;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Old Standard TT', 'Noto Serif JP', serif;
   line-height: 1;
   margin-right: 10px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -261,7 +263,7 @@ h2, h3 {
   font-size: clamp(24px, 5vw, 32px);
   color: #fff;
   font-weight: 400;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Old Standard TT', 'Noto Serif JP', serif;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
@@ -277,18 +279,18 @@ h2, h3 {
 }
 
 .time-item .num {
-  font-weight: 500;
+  font-weight: 700;
   font-size: clamp(28px, 6vw, 36px);
   color: #fff;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Old Standard TT', 'Noto Serif JP', serif;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .time-item .label {
   font-size: clamp(12px, 2.5vw, 14px);
   color: #fff;
-  font-weight: 300;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-family: 'Old Standard TT', 'Noto Serif JP', serif;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
@@ -411,7 +413,7 @@ h2, h3 {
 .section-content .message-gif-wrapper {
   width: 54%;
   max-width: 360px;
-  margin: 0 auto 20px;
+  margin: 25vh auto 20px;
   display: flex;
   justify-content: center;
   position: relative;
@@ -862,6 +864,7 @@ h2, h3 {
 ------------------------------------------------------------------ */
 .rsvp {
   background: #fff5f8;
+  padding: 80px 20px;
 }
 
 .rsvp-intro {
@@ -1133,21 +1136,22 @@ textarea {
   }
   .fullscreen-section {
     height: 100dvh;
-    padding-top: 20vh;
+    padding-top: 13vh;
   }
   .section-content {
     padding: 15px;
     max-width: 95%;
   }
   .section-content p {
-    font-size: 14px;
-    line-height: 1.7;
-    padding: 0 10px;
+    font-size: 18px;
+    line-height: 2;
+    padding: 0 40px;
+    margin-top: -12vh;
   }
   .section-content .message-gif-wrapper {
     width: 60%;
     max-width: 250px;
-    margin: 0 auto 15px;
+    margin: -5vh auto 15px;
   }
   
   /* Typography */
@@ -1255,7 +1259,7 @@ textarea {
 /* Mobile Medium (720px and below) */
 @media (max-width: 720px) {
   .couple { font-size: 54px; }
-  .container { padding: 0 20px; }
+  .container { padding: 0; }
   h2, h3 { font-size: 2em; }
   
   /* Profile */
@@ -1284,7 +1288,7 @@ textarea {
 
 /* Mobile Small (540px and below) */
 @media (max-width: 540px) {
-  .fullscreen-section { padding-top: 15vh; }
+  .fullscreen-section { padding-top: 8vh; }
 
   /* Message & Profile GIFs */
   .message-gif-wrapper,
@@ -1295,7 +1299,7 @@ textarea {
     margin: 0 auto -15px;
   }
   .section-content .message-gif-wrapper {
-    margin: 0 auto 15px;
+    margin: -5vh auto 15px;
   }
   .profile-gif-wrapper {
     margin: 0 auto 20px;
@@ -1314,9 +1318,10 @@ textarea {
   }
 
   .section-content p {
-    font-size: 13px;
-    line-height: 1.6;
-    padding: 0 15px;
+    font-size: 17px;
+    line-height: 2;
+    padding: 0 40px;
+    margin-top: -10vh;
   }
 
   .profile { padding: 80px 20px 60px; }

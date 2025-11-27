@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Shinnnosuke &amp; Kaho's Wedding</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600&family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
@@ -14,220 +14,55 @@
       <video src="animation/WelcomeToOurWedding.mp4" class="welcome-animation" autoplay muted playsinline onended="window.videoEnded = true"></video>
     </div>
   </div>
-  <!-- フルスクリーンコンテナ -->
-  <div class="fullscreen-container">
-    <!-- ヒーロー画像セクション -->
-    <section class="fullscreen-section hero-section">
-    </section>
 
-    <!-- カウントダウン背景画像セクション -->
-    <section class="fullscreen-section countdown-bg-section">
-      <div class="section-overlay"></div>
-      <div class="section-content">
-        <div class="countdown" id="countdown" aria-hidden="false">
-          <div class="countdown-to">
-            <span class="to-text">To</span> <span class="to-label">2026.3.20</span>
-          </div>
-          <div class="countdown-days">
-            <span class="num" id="cd-days">--</span><span class="label">Days</span>
-          </div>
-          <div class="countdown-time">
-            <div class="time-item"><span class="num" id="cd-hours">--</span> <span class="label">hours</span></div>
-            <div class="time-item"><span class="num" id="cd-mins">--</span> <span class="label">minutes</span></div>
-            <div class="time-item"><span class="num" id="cd-secs">--</span> <span class="label">seconds</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- メッセージ背景画像セクション -->
-    <section class="fullscreen-section message-bg-section">
-      <div class="section-overlay"></div>
-      <div class="section-content">
-        <!-- Handwriting GIF for Message heading -->
-        <div class="message-gif-wrapper">
-          <img
-            id="message-gif"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
-            data-src="animation/Message.webp"
-            alt="Message handwritten animation"
-          />
-        </div>
-        <p>皆様いかがお過ごしでしょうか このたび結婚式を執り行うこととなりました。<br>
-        日頃お世話になっております皆様に、私どもの門出をお見守りいただきたく、ささやかながら小宴を催したく存じます。<br>
-        ご多用中、誠に恐縮ではございますが、ぜひご出席いただきたくご案内申し上げます。</p>
-      </div>
-    </section>
-  </div>
-
+  <!-- メインコンテンツ -->
   <main class="container">
-    
-    <!-- Profile Section -->
-    <section id="profile" class="profile fade-in-section">
-      <!-- Profile GIF animation -->
-      <div class="profile-gif-wrapper">
-        <img
-          id="profile-gif"
-          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
-          data-src="animation/Profile.webp"
-          alt="Profile handwritten animation"
-        />
-      </div>
-      <div class="profile-grid">
-        <article class="profile-card">
-          <div class="avatar">
-            <!-- TODO: 画像をご用意ください -->
-            <img src="image/profile_groom.jpg" alt="新郎 Shinnosuke の写真" loading="lazy">
-          </div>
-          <h3 class="name">
-            <span class="name-en">Shinnosuke</span>
-            <span class="name-jp">新郎 しんのすけ</span>
-          </h3>
-          <p class="bio">自己紹介文が入ります。出会いのエピソードや趣味・好きなことなどを2〜3行で簡潔に。</p>
-        </article>
-        <article class="profile-card">
-          <div class="avatar">
-            <!-- TODO: 画像をご用意ください -->
-            <img src="image/profile_bride.jpg" alt="新婦 Kaho の写真" loading="lazy">
-          </div>
-          <h3 class="name">
-            <span class="name-en">Kaho</span>
-            <span class="name-jp">新婦 かほ</span>
-          </h3>
-          <p class="bio">自己紹介文が入ります。お仕事や好きなもの、当日の意気込みなどを2〜3行で。</p>
-        </article>
-      </div>
-    </section>
-    <section class="event-info fade-in-section">
-      <div class="info-container">
-        <h2 class="section-heading">
-          <span class="en-heading">EVENTS</span>
-          <span class="jp-heading">挙式・披露宴のご案内</span>
-        </h2>
-        
-        <div class="event-grid">
-          <div class="event-card">
-            <div class="card-icon">
-              <i class="far fa-calendar-alt"></i>
-            </div>
-            <h4 class="card-title">
-              <span class="en">Date & Time</span>
-              <span class="jp">日時</span>
-            </h4>
-            <div class="card-body">
-              <p class="event-date">2026.03.20 <span class="day-of-week">Friday</span></p>
-              <div class="event-schedule">
-                <p><span class="schedule-label">受付</span>9:30〜</p>
-                <p><span class="schedule-label">挙式</span>10:00〜</p>
-                <p><span class="schedule-label">披露宴</span>11:00〜13:00</p>
-              </div>
-              <p class="event-note">※午前9時40分までに3階控室にお揃いください</p>
-            </div>
-          </div>
+    <!-- フルスクリーンコンテナ -->
+    <div class="fullscreen-container">
+      <!-- ヒーロー画像セクション -->
+      <section class="fullscreen-section hero-section">
+      </section>
 
-          <div class="event-card">
-            <div class="card-icon">
-              <i class="fas fa-map-marker-alt"></i>
+      <!-- カウントダウン背景画像セクション -->
+      <section class="fullscreen-section countdown-bg-section">
+        <div class="section-overlay"></div>
+        <div class="section-content">
+          <div class="countdown" id="countdown" aria-hidden="false">
+            <div class="countdown-to">
+              <span class="to-text">To</span> <span class="to-label">2026.3.20</span>
             </div>
-            <h4 class="card-title">
-              <span class="en">Venue</span>
-              <span class="jp">会場</span>
-            </h4>
-            <div class="card-body">
-              <p class="venue-name">〇〇迎賓館</p>
-              <p class="venue-room">△△の間</p>
-              <a href="#map" class="map-link">
-                <i class="fas fa-map"></i> 会場案内を見る
-              </a>
+            <div class="countdown-days">
+              <span class="num" id="cd-days">--</span><span class="label">Days</span>
             </div>
-          </div>
-
-          <div class="event-card full-width">
-            <div class="card-icon">
-              <i class="fas fa-info-circle"></i>
-            </div>
-            <h4 class="card-title">
-              <span class="en">Facility Information</span>
-              <span class="jp">施設のご案内</span>
-            </h4>
-            <div class="card-body">
-              <div class="facility-grid">
-                <div class="facility-item">
-                  <h5>クローク（お荷物預かり）</h5>
-                  <p>ホテル2階披露宴会場前のクロークをご利用ください</p>
-                </div>
-                <div class="facility-item">
-                  <h5>更衣室</h5>
-                  <p>ホテル2階に男性用・女性用着替室のご用意がございます</p>
-                </div>
-                <div class="facility-item">
-                  <h5>着付・ヘアセット・メイク</h5>
-                  <p>ご用命の際は事前にご予約ください<br>
-                  3階メイクスタジオ<br>
-                  <a href="tel:047-350-8392" class="tel-link">TEL: 047-350-8392（直通）</a></p>
-                </div>
-                <div class="facility-item">
-                  <h5>アレルギー対応</h5>
-                  <p>28品目の食材に限り対応をいたしております<br>
-                  <a href="https://www.youtube.com/watch?v=fk5kUTYP828" target="_blank" rel="noopener" class="external-link">詳細はこちらをご確認ください</a></p>
-                </div>
-              </div>
+            <div class="countdown-time">
+              <div class="time-item"><span class="num" id="cd-hours">--</span> <span class="label">hours</span></div>
+              <div class="time-item"><span class="num" id="cd-mins">--</span> <span class="label">minutes</span></div>
+              <div class="time-item"><span class="num" id="cd-secs">--</span> <span class="label">seconds</span></div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="photos fade-in-section">
-      <h3>Photo Gallery</h3>
-      <div class="carousel-container">
-        <div class="carousel-stage">
-          <div class="carousel-track" id="carouselTrack">
-            <div class="carousel-item landscape">
-              <div class="photo-placeholder">
-                <span>写真 1</span>
-              </div>
-            </div>
-            <div class="carousel-item portrait">
-              <div class="photo-placeholder">
-                <span>写真 2</span>
-              </div>
-            </div>
-            <div class="carousel-item landscape">
-              <div class="photo-placeholder">
-                <span>写真 3</span>
-              </div>
-            </div>
-            <div class="carousel-item portrait">
-              <div class="photo-placeholder">
-                <span>写真 4</span>
-              </div>
-            </div>
-            <div class="carousel-item landscape">
-              <div class="photo-placeholder">
-                <span>写真 5</span>
-              </div>
-            </div>
-            <div class="carousel-item portrait">
-              <div class="photo-placeholder">
-                <span>写真 6</span>
-              </div>
-            </div>
+      <!-- メッセージ背景画像セクション -->
+      <section class="fullscreen-section message-bg-section">
+        <div class="section-overlay"></div>
+        <div class="section-content">
+          <!-- Handwriting GIF for Message heading -->
+          <div class="message-gif-wrapper">
+            <img
+              id="message-gif"
+              src="animation/Message.webp"
+              alt="Message handwritten animation"
+              loading="lazy"
+            />
           </div>
+          <p>皆様いかがお過ごしでしょうか このたび結婚式を執り行うこととなりました。<br>
+          日頃お世話になっております皆様に、私どもの門出をお見守りいただきたく、ささやかながら小宴を催したく存じます。<br>
+          ご多用中、誠に恐縮ではございますが、ぜひご出席いただきたくご案内申し上げます。</p>
         </div>
-        <div class="carousel-controls">
-          <button class="carousel-btn prev" aria-label="前の写真へ" type="button">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <button class="carousel-btn next" aria-label="次の写真へ" type="button">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
-        <div class="carousel-indicators" id="carouselIndicators"></div>
-      </div>
-    </section>
-
-    <section class="rsvp fade-in-section">
+      </section>
+    </div>
+    <section id="rsvp" class="rsvp fade-in-section">
       <h2 class="section-heading">
         <span class="en-heading">RSVP</span>
         <span class="jp-heading">出欠のご連絡</span>
@@ -303,14 +138,6 @@
       </form>
 
       <div id="response" class="response" role="status" aria-live="polite"></div>
-    </section>
-
-    <section class="map">
-      <h3>会場アクセス</h3>
-      <!-- README asks to embed Google Maps via iframe -->
-      <div class="map-embed">
-        <iframe title="会場の地図" src="https://www.google.com/maps/embed?pb=!1m18" loading="lazy"></iframe>
-      </div>
     </section>
   </main>
 
