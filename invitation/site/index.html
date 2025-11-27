@@ -14,44 +14,53 @@
       <video src="animation/WelcomeToOurWedding.mp4" class="welcome-animation" autoplay muted playsinline onended="window.videoEnded = true"></video>
     </div>
   </div>
-  <header class="hero">
-    <div class="hero-bg" aria-hidden="true">
-      <img src="image/hero_image.webp" alt="ヒーローイメージ" class="hero-img">
-    </div>
-  </header>
+  <!-- フルスクリーンコンテナ -->
+  <div class="fullscreen-container">
+    <!-- ヒーロー画像セクション -->
+    <section class="fullscreen-section hero-section">
+    </section>
+
+    <!-- カウントダウン背景画像セクション -->
+    <section class="fullscreen-section countdown-bg-section">
+      <div class="section-overlay"></div>
+      <div class="section-content">
+        <div class="countdown" id="countdown" aria-hidden="false">
+          <div class="countdown-to">
+            <span class="to-text">To</span> <span class="to-label">2026.3.20</span>
+          </div>
+          <div class="countdown-days">
+            <span class="num" id="cd-days">--</span><span class="label">Days</span>
+          </div>
+          <div class="countdown-time">
+            <div class="time-item"><span class="num" id="cd-hours">--</span> <span class="label">hours</span></div>
+            <div class="time-item"><span class="num" id="cd-mins">--</span> <span class="label">minutes</span></div>
+            <div class="time-item"><span class="num" id="cd-secs">--</span> <span class="label">seconds</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- メッセージ背景画像セクション -->
+    <section class="fullscreen-section message-bg-section">
+      <div class="section-overlay"></div>
+      <div class="section-content">
+        <!-- Handwriting GIF for Message heading -->
+        <div class="message-gif-wrapper">
+          <img
+            id="message-gif"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+            data-src="animation/Message.webp"
+            alt="Message handwritten animation"
+          />
+        </div>
+        <p>皆様いかがお過ごしでしょうか このたび結婚式を執り行うこととなりました。<br>
+        日頃お世話になっております皆様に、私どもの門出をお見守りいただきたく、ささやかながら小宴を催したく存じます。<br>
+        ご多用中、誠に恐縮ではございますが、ぜひご出席いただきたくご案内申し上げます。</p>
+      </div>
+    </section>
+  </div>
 
   <main class="container">
-    <section class="countdown-section fade-in-section">
-      <div class="countdown" id="countdown" aria-hidden="false">
-        <div class="countdown-to">
-          <span class="to-text">To</span> <span class="to-label">2026.3.20</span>
-        </div>
-        <div class="countdown-days">
-          <span class="num" id="cd-days">--</span><span class="label">Days</span>
-        </div>
-        <div class="countdown-time">
-          <div class="time-item"><span class="num" id="cd-hours">--</span> <span class="label">hours</span></div>
-          <div class="time-item"><span class="num" id="cd-mins">--</span> <span class="label">minutes</span></div>
-          <div class="time-item"><span class="num" id="cd-secs">--</span> <span class="label">seconds</span></div>
-        </div>
-      </div>
-
-    </section>
-    
-    <section class="greeting fade-in-section">
-      <!-- Handwriting GIF for Message heading -->
-      <div class="message-gif-wrapper">
-        <img
-          id="message-gif"
-          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
-          data-src="animation/Message.webp"
-          alt="Message handwritten animation"
-        />
-      </div>
-      <p>皆様いかがお過ごしでしょうか このたび結婚式を執り行うこととなりました。<br>
-      日頃お世話になっております皆様に、私どもの門出をお見守りいただきたく、ささやかながら小宴を催したく存じます。<br>
-      ご多用中、誠に恐縮ではございますが、ぜひご出席いただきたくご案内申し上げます。</p>
-    </section>
     
     <!-- Profile Section -->
     <section id="profile" class="profile fade-in-section">

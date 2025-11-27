@@ -1,19 +1,55 @@
-:root{
-  --max-width:980px;
-  --accent:#3b82f6; /* blue-500 */
-  --accent-dark:#1d4ed8; /* blue-700 */
-  --muted:#64748b;
-  --bg:#ffffff;
-  --card:#ffffff;
-  --gradient-start:#1e3a8a;
-  --gradient-end:#172554;
+:root {
+  --max-width: 980px;
+  --accent: #3b82f6; /* blue-500 */
+  --accent-dark: #1d4ed8; /* blue-700 */
+  --muted: #64748b;
+  --bg: #ffffff;
+  --card: #ffffff;
+  --gradient-start: #1e3a8a;
+  --gradient-end: #172554;
+}
+
+* {
+  box-sizing: border-box;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
-/* Initial Loading Animation - WelcomeTo GIF */
+body {
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #222;
+  margin: 0;
+  background: var(--bg);
+  font-weight: 300;
+  font-size: 16px;
+  height: 100%;
+}
+
+main, .container {
+  background-color: #3a3a3a;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h2, h3 {
+  color: var(--accent);
+  font-weight: 400;
+  font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
+  font-size: 2.8em;
+  margin-bottom: 1em;
+  letter-spacing: 0.02em;
+}
+
+/* ------------------------------------------------------------------
+   Initial Loading Animation
+------------------------------------------------------------------ */
 .initial-overlay {
   position: fixed;
   top: 0;
@@ -43,13 +79,7 @@ html {
   align-items: center;
 }
 
-.welcome-animation {
-  width: 100%;
-  height: auto;
-  max-width: 600px;
-  object-fit: contain;
-}
-
+.welcome-animation,
 .welcome-animation video {
   width: 100%;
   height: auto;
@@ -58,199 +88,113 @@ html {
 }
 
 @keyframes fadeOutOverlay {
-  0% {
-    opacity: 1;
-    visibility: visible;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
+  0% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
 }
 
-*{box-sizing:border-box}
-body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;line-height:1.6;color:#222;margin:0;background:var(--bg);font-weight:300;font-size:16px}
+/* ------------------------------------------------------------------
+   Fullscreen Sections & Backgrounds
+------------------------------------------------------------------ */
+.fullscreen-container {
+  scroll-snap-type: y proximity;
+  overflow-y: scroll;
+  height: 100vh;
+  scroll-behavior: smooth;
+}
 
-/* Hero */
-.hero {
+.fullscreen-section {
   position: relative;
-  height: 700px;
-  min-height: 700px;
-  overflow: hidden;
-  background: #000;
-  margin-bottom: 0px;
-}
-
-/* Hero Images with Parallax */
-.hero-images {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 120%;
-  will-change: transform;
-  transform: translateY(0);
-}
-
-.hero-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 0.85;
-}
-
-/* モバイル用ヒーロー画像調整 */
-@media (max-width: 768px) {
-  .hero-img {
-    object-fit: contain;
-    object-position: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    min-height: 600px;
-    height: 600px;
-  }
-  
-  .hero-images {
-    height: 100%;
-  }
-  
-  .hero-img {
-    object-fit: cover;
-    object-position: center top;
-  }
-}
-.hero-inner {
-  position: relative;
-  height: 100%;
-  width: 100%;
+  height: 100dvh;
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  z-index: 2;
+  padding-top: 25vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
 }
-.hero-bg {
+
+.hero-section { background-image: url('image/hero_image.webp'); }
+.countdown-bg-section { background-image: url('image/countdown_bg_image.webp'); }
+.message-bg-section { background-image: url('image/message_bg_image.webp'); }
+
+/* コンテンツオーバーレイ */
+.section-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background: rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
-.hero-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+/* セクション内コンテンツ */
+.section-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  max-width: 90%;
 }
 
-.hero-img.active {
-  opacity: 1;
-}
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.85;
-}
-.hero-content {
-  text-align: center;
-  color: #fff;
-  padding: 20px;
-  max-width: 800px;
-  position: relative;
-  z-index: 3;
-}
-.couple {
+/* タイポグラフィ */
+.section-content .couple {
   font-family: 'Great Vibes', 'Rouge Script', cursive;
-  font-size: 72px;
-  margin: 0;
+  font-size: clamp(48px, 8vw, 72px);
+  margin: 0 0 20px;
   color: #fff;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   opacity: 0;
   transform: translateY(30px);
   animation: slideUp 1.5s ease forwards;
 }
-.subtitle {
+
+.section-content .subtitle {
   font-family: 'Great Vibes', cursive;
-  font-size: 24px;
-  margin: 0px 0;
+  font-size: clamp(20px, 4vw, 28px);
+  margin: 0 0 30px;
   font-weight: 400;
   letter-spacing: 2px;
   color: #fff;
   opacity: 0;
   transform: translateY(20px);
   animation: slideUp 1.5s ease 0.3s forwards;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
-/* Hero section event date - higher specificity to override later styles */
-.hero .event-date {
+
+.section-content .event-date {
   font-family: 'Great Vibes', 'Rouge Script', cursive;
-  color: #fff !important;
-  font-size: 32px;
+  color: #fff;
+  font-size: clamp(24px, 5vw, 36px);
   font-weight: 400;
-  margin: 20px 0;
+  margin: 20px 0 40px;
   opacity: 0;
   transform: translateY(20px);
   animation: slideUp 1.5s ease 0.6s forwards;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-.countdown-section {
-  position: relative;
-  padding: 150px 0;
-  background: #fff;
-  min-height: 600px;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+.section-content p {
+  font-size: clamp(14px, 3vw, 16px);
+  line-height: 1.8;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  margin: 20px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 1.5s ease 1.2s forwards;
 }
 
-.countdown-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('image/countdown_bg_image.webp');
-  background-size: 100vw auto;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.countdown-section > * {
-  position: relative;
-  z-index: 1;
-  padding: 0 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: inline-block;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
-  padding-top: 10%; /* 5%上部に移動 */
-}
-
-.countdown {
+/* ------------------------------------------------------------------
+   Countdown
+------------------------------------------------------------------ */
+.section-content .countdown {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -261,7 +205,19 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   width: 100%;
   max-width: 600px;
   padding: 0 10px;
-  box-sizing: border-box;
+}
+
+.countdown-section {
+  padding: 80px 20px;
+  background: #fff;
+  width: 100%;
+  margin: 0;
+}
+
+.countdown-section > * {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .countdown-to {
@@ -271,17 +227,19 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
 
 .countdown-to .to-text {
   font-weight: 300;
-  font-size: 25.2px;
-  color: #000;
+  font-size: clamp(20px, 4vw, 25.2px);
+  color: #fff;
   font-family: 'Noto Sans JP', sans-serif;
   margin-right: 8px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .countdown-to .to-label {
   font-weight: 500;
-  font-size: 32.2px;
-  color: #000;
+  font-size: clamp(24px, 5vw, 32.2px);
+  color: #fff;
   font-family: 'Noto Sans JP', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .countdown-days {
@@ -291,18 +249,20 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
 
 .countdown-days .num {
   font-weight: 600;
-  font-size: 129.6px;
-  color: #000;
+  font-size: clamp(80px, 15vw, 129.6px);
+  color: #fff;
   font-family: 'Noto Sans JP', sans-serif;
   line-height: 1;
   margin-right: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .countdown-days .label {
-  font-size: 32px;
-  color: #000;
+  font-size: clamp(24px, 5vw, 32px);
+  color: #fff;
   font-weight: 400;
   font-family: 'Noto Sans JP', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .countdown-time {
@@ -318,83 +278,23 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
 
 .time-item .num {
   font-weight: 500;
-  font-size: 36px;
-  color: #000;
+  font-size: clamp(28px, 6vw, 36px);
+  color: #fff;
   font-family: 'Noto Sans JP', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .time-item .label {
-  font-size: 14px;
-  color: #000;
+  font-size: clamp(12px, 2.5vw, 14px);
+  color: #fff;
   font-weight: 300;
   font-family: 'Noto Sans JP', sans-serif;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-
-
-
-
-
-@media (max-width: 768px) {
-  .hero {
-    min-height: 700px;
-    height: auto;
-  }
-  
-  .countdown-section {
-    padding: 57px 0 0 0;
-    min-height: 100vh;
-    display: inline-block;
-    align-items: flex-start;
-    justify-content: center;
-  }
-  
-  .countdown-section > * {
-    padding: 0 0px;
-    padding-top: 0%; /* 5%上部に移動 */
-  }
-  
-  .countdown-section::before {
-    background-size: 100vw auto;
-    background-attachment: scroll;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .countdown {
-    margin: 20px auto;
-    padding: 0 5px;
-  }
-  
-  .countdown-to .to-text {
-    font-size: 18px; /* 90% of 20px */
-  }
-  
-  .countdown-to .to-label {
-    font-size: 27px; /* 115% of 20px */
-  }
-  
-  .countdown-days .num {
-    font-size: 90px; /* 150% of 67.2px */
-  }
-  
-  .countdown-days .label {
-    font-size: 24px;
-  }
-  
-  .countdown-time {
-    gap: 10px;
-  }
-  
-  .time-item .num {
-    font-size: 25px; /* 150% of 20px */
-  }
-  
-  .time-item .label {
-    font-size: 12px;
-  }
-}
-
+/* ------------------------------------------------------------------
+   Hero Actions & Buttons
+------------------------------------------------------------------ */
 .hero-actions {
   margin-top: 40px;
   display: flex;
@@ -406,6 +306,7 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   margin-left: auto;
   margin-right: auto;
 }
+
 .btn {
   display: inline-block;
   background: rgba(255,255,255,0.9);
@@ -421,235 +322,38 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   min-width: 180px;
   text-align: center;
 }
+
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
+
 .btn.ghost {
   background: transparent;
   color: #fff;
   border: 2px solid rgba(255,255,255,0.6);
 }
+
 .btn.ghost:hover {
   background: rgba(255,255,255,0.1);
   border-color: #fff;
 }
 
-/* Photo Slider */
-.photos {
-  padding: 80px 0;
-  max-width: 100%;
+/* ------------------------------------------------------------------
+   Common Section Styles (Greeting, Photos, Event, RSVP, Map)
+------------------------------------------------------------------ */
+.greeting, .event-info, .photos, .rsvp, .map {
+  padding: 80px 20px;
+  width: 100%;
   margin: 0;
-  background: #f9fef9;
-  width: 100%;
-}
-
-/* 3D Carousel Container - Revolver/Cylinder Style */
-.carousel-container {
-  max-width: 100%;
-  margin: 0;
-  position: relative;
-  padding: 60px 0;
-}
-
-.carousel-stage {
-  perspective: 1400px;
-  width: 100%;
-  height: 500px;
-  position: relative;
-  overflow: hidden;
-}
-
-.carousel-track {
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 50%;
-  top: 50%;
-  transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: grab;
-}
-
-.carousel-track:active {
-  cursor: grabbing;
-}
-
-.carousel-item {
-  position: absolute;
-  width: 200px;
-  height: 280px;
-  left: 0;
-  top: 0;
-  margin-left: -100px; /* 中心から左半分 */
-  margin-top: -140px;  /* 中心から上半分 */
-  transform-style: preserve-3d;
-  backface-visibility: visible;
-  border-radius: 0;
-  overflow: hidden;
-  box-shadow: none;
-  transition: opacity 0.5s ease, filter 0.5s ease;
-}
-
-/* 横向きの写真（landscape） */
-.carousel-item.landscape {
-  width: 280px;
-  height: 200px;
-  margin-left: -140px;
-  margin-top: -100px;
-}
-
-/* 縦向きの写真（portrait） */
-.carousel-item.portrait {
-  width: 200px;
-  height: 280px;
-  margin-left: -100px;
-  margin-top: -140px;
-}
-
-.carousel-item.center {
-  z-index: 10;
-  opacity: 1 !important;
-  filter: brightness(1) blur(0) !important;
-}
-
-.carousel-item:not(.center) {
-  opacity: 0.5;
-  filter: brightness(0.7) blur(1px);
-}
-
-/* Controls */
-.carousel-controls {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 40px;
-  position: relative;
-  z-index: 20;
-}
-
-.carousel-btn {
-  width: 50px;
-  height: 50px;
-  background: white;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  color: var(--accent);
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.carousel-btn:hover {
-  background: var(--accent);
-  color: white;
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-
-.carousel-btn:active {
-  transform: scale(0.95);
-}
-
-/* Indicators */
-.carousel-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 30px;
-}
-
-.carousel-indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(189, 157, 103, 0.3);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-}
-
-.carousel-indicator.active {
-  background: var(--accent);
-  width: 30px;
-  border-radius: 6px;
-}
-
-.carousel-indicator:hover {
-  background: rgba(189, 157, 103, 0.6);
-}
-
-.photo-placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,0.7);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 24px;
-}
-.slider-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--accent);
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-.slider-nav:hover {
   background: #fff;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-}
-.slider-nav.prev {
-  left: 0;
-}
-.slider-nav.next {
-  right: 0;
-}
-.slider-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-}
-.slider-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--muted);
-  opacity: 0.5;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-.slider-dot.active {
-  opacity: 1;
-  background: var(--accent);
-  transform: scale(1.2);
 }
 
-/* Content Sections */
 .greeting, .details, .rsvp {
   opacity: 0;
   transform: translateY(30px);
 }
+
 .fade-in-section {
   opacity: 0;
   transform: translateY(30px);
@@ -657,112 +361,39 @@ body{font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
               transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: opacity, transform;
 }
+
 .fade-in-section.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Animations */
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Smoother transitions for all interactive elements */
-* {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .hero {
-    min-height: 700px;
-    height: auto;
-  }
-  .couple {
-    font-size: 48px;
-  }
-  .subtitle {
-    font-size: 24px;
-  }
-  .hero-actions {
-    flex-direction: column;
-    gap: 15px;
-  }
-  .btn {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-/* Main container */
-main {
-  background-color: #3a3a3a; /* ライトグレー */
-}
-
-.container {
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  background-color: #3a3a3a; /* ライトグレー */
-}
-
-/* Greeting Section - Unified */
-.greeting {
-  max-width: 100%;
-  margin: 0;
-  padding: 80px 20px 120px;
-  text-align: center;
-  width: 100%;
-  min-height: 800px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.greeting::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  height: 800px;
-  background-image: url('image/message_bg_image.webp');
-  background-size: 100vw auto;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  z-index: 0;
-  pointer-events: none;
-}
-
+/* ------------------------------------------------------------------
+   Greeting Section
+------------------------------------------------------------------ */
 .greeting > * {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  z-index: 1; /* コンテンツを背景より前面に */
+  z-index: 1;
 }
 
-/* Message video wrapper */
+.greeting h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.greeting p {
+  margin: 0 auto;
+  font-size: 0.85em;
+  line-height: 2;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+  text-align: center;
+  padding: 0 50px;
+}
+
+/* Message Video/GIF Wrappers */
 .message-video-wrapper {
   max-width: 400px;
   margin: 0 auto 30px;
@@ -775,82 +406,33 @@ main {
   height: auto;
   display: block;
 }
-/* Message GIF wrapper */
-.message-gif-wrapper {
-  width: 54%; /* 横幅を54%に（90%縮小） */
+
+.message-gif-wrapper,
+.section-content .message-gif-wrapper {
+  width: 54%;
   max-width: 360px;
-  margin: 0 auto -20px; /* 下の文章とオーバーラップ */
+  margin: 0 auto 20px;
   display: flex;
   justify-content: center;
   position: relative;
   z-index: 5;
 }
 
-.message-gif-wrapper img {
+.section-content .message-gif-wrapper {
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+}
+
+.message-gif-wrapper img,
+.section-content .message-gif-wrapper img {
   width: 100%;
   height: auto;
   display: block;
   image-rendering: -webkit-optimize-contrast;
 }
 
-@media (max-width: 540px) {
-  .message-gif-wrapper { 
-    width: 54%; /* モバイルも54%（90%縮小） */
-    max-width: 225px;
-    margin: 0 auto -15px; /* モバイルでもオーバーラップ */
-  }
-  
-  .greeting::before {
-    width: 100vw;
-    max-width: none;
-    height: 100%;
-    background-size: 100vw auto;
-    background-attachment: scroll;
-  }
-  
-  .greeting > * {
-    max-width: 90%;
-  }
-  
-  .greeting p {
-    font-size: 0.75em; /* モバイルでさらに小さく */
-    line-height: 1.9;
-    padding: 0 50px;
-    text-align: center; /* モバイルも中央揃え */
-  }
-}
-
-.event-info {
-  padding: 80px 20px;
-  background: #fff; /* 白へ統一 */
-  width: 100%;
-  margin: 0;
-}
-
-.photos {
-  padding: 80px 20px;
-  max-width: 100%;
-  margin: 0;
-  background: #fff; /* 白へ統一 */
-  width: 100%;
-}
-
-.rsvp {
-  background: #fff; /* 白へ統一 */
-  max-width: 100%;
-  margin: 0;
-  padding: 80px 20px;
-  width: 100%;
-}
-
-.map {
-  background: #fff; /* 白へ統一 */
-  padding: 80px 20px;
-  margin: 0;
-  width: 100%;
-}
-
-/* Profile Section */
+/* ------------------------------------------------------------------
+   Profile Section
+------------------------------------------------------------------ */
 .profile {
   padding: 120px 20px 80px;
   background: linear-gradient(to bottom, #3a3a3a 0%, rgba(58, 58, 58, 0.8) 30%, rgba(255, 255, 255, 0.9) 70%, #fff 100%);
@@ -858,7 +440,6 @@ main {
   margin: 0;
 }
 
-/* Profile GIF wrapper */
 .profile-gif-wrapper {
   width: 54%;
   max-width: 360px;
@@ -876,14 +457,6 @@ main {
   image-rendering: -webkit-optimize-contrast;
 }
 
-@media (max-width: 540px) {
-  .profile-gif-wrapper { 
-    width: 54%;
-    max-width: 225px;
-    margin: 0 auto 20px;
-  }
-}
-
 .profile-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -896,10 +469,8 @@ main {
 .profile-card {
   background: transparent;
   border: none;
-  border-radius: 0;
   padding: 20px;
   text-align: center;
-  box-shadow: none;
 }
 
 .avatar {
@@ -945,54 +516,9 @@ main {
   font-size: 0.95em;
 }
 
-@media (max-width: 720px) {
-  .profile-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  
-  .avatar {
-    width: 220px;
-    height: 220px;
-  }
-}
-
-@media (max-width: 540px) {
-  .avatar {
-    width: 200px;
-    height: 200px;
-  }
-  .bio {
-    font-size: 0.9em;
-  }
-  
-  .profile {
-    padding: 80px 20px 60px;
-  }
-  
-  .greeting {
-    padding: 60px 20px 80px;
-    min-height: 600px;
-  }
-  
-  .profile-grid {
-    gap: 40px;
-  }
-}
-h2, h3 {
-  color: var(--accent);
-  font-weight: 400;
-  font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
-  font-size: 2.8em;
-  margin-bottom: 1em;
-  letter-spacing: 0.02em;
-}
-/* Event Information Section - Dear-Guest Style */
-.event-info {
-  padding: 80px 20px;
-  background: #fff; /* 白へ統一 */
-}
-
+/* ------------------------------------------------------------------
+   Event Information
+------------------------------------------------------------------ */
 .info-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -1078,13 +604,17 @@ h2, h3 {
   line-height: 1.8;
 }
 
-.event-date {
+.event-card .event-date {
   font-family: 'Raleway', sans-serif;
   font-size: 1.8em;
   font-weight: 300;
   letter-spacing: 0.05em;
   margin-bottom: 20px;
   color: #222;
+  text-shadow: none; /* Reset shadow from hero section */
+  opacity: 1;
+  transform: none;
+  animation: none;
 }
 
 .day-of-week {
@@ -1177,60 +707,161 @@ h2, h3 {
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-  .event-info {
-    padding: 60px 15px;
-  }
-
-  .en-heading {
-    font-size: 1.8em;
-  }
-
-  .event-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .event-card {
-    padding: 30px 20px;
-  }
-
-  .facility-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-
-.greeting > * {
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  z-index: 1; /* コンテンツを背景より前面に */
-}
-
-.greeting h2 {
-  font-size: 2em;
-  margin-bottom: 30px;
-}
-
-.greeting p {
-  margin: 0 auto;
-  font-size: 0.85em; /* 文字サイズを下げる */
-  line-height: 2;
-  letter-spacing: 0.05em;
-  font-weight: 300;
-  text-align: center; /* 中央揃え */
-  padding: 0 50px;
-}
-
-/* RSVP Section - Dear-Guest Style */
-.rsvp {
+/* ------------------------------------------------------------------
+   Photo Slider / Carousel
+------------------------------------------------------------------ */
+.carousel-container {
   max-width: 100%;
   margin: 0;
-  padding: 80px 20px;
-  background: #fff5f8;
+  position: relative;
+  padding: 60px 0;
+}
+
+.carousel-stage {
+  perspective: 1400px;
   width: 100%;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-track {
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 50%;
+  top: 50%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: grab;
+}
+
+.carousel-track:active {
+  cursor: grabbing;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 200px;
+  height: 280px;
+  left: 0;
+  top: 0;
+  margin-left: -100px; /* 中心から左半分 */
+  margin-top: -140px;  /* 中心から上半分 */
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+.carousel-item.landscape {
+  width: 280px;
+  height: 200px;
+  margin-left: -140px;
+  margin-top: -100px;
+}
+
+.carousel-item.portrait {
+  width: 200px;
+  height: 280px;
+  margin-left: -100px;
+  margin-top: -140px;
+}
+
+.carousel-item.center {
+  z-index: 10;
+  opacity: 1 !important;
+  filter: brightness(1) blur(0) !important;
+}
+
+.carousel-item:not(.center) {
+  opacity: 0.5;
+  filter: brightness(0.7) blur(1px);
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+  position: relative;
+  z-index: 20;
+}
+
+.carousel-btn {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.carousel-btn:hover {
+  background: var(--accent);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.carousel-btn:active {
+  transform: scale(0.95);
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.carousel-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(189, 157, 103, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel-indicator.active {
+  background: var(--accent);
+  width: 30px;
+  border-radius: 6px;
+}
+
+.carousel-indicator:hover {
+  background: rgba(189, 157, 103, 0.6);
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.7);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+}
+
+/* ------------------------------------------------------------------
+   RSVP Section
+------------------------------------------------------------------ */
+.rsvp {
+  background: #fff5f8;
 }
 
 .rsvp-intro {
@@ -1252,6 +883,8 @@ h2, h3 {
   padding: 20px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
+  font-weight: 600;
+  color: var(--muted);
 }
 
 .rsvp-intro strong {
@@ -1438,87 +1071,264 @@ textarea {
   border: 1px solid #f5c6cb;
 }
 
+/* ------------------------------------------------------------------
+   Map & Footer
+------------------------------------------------------------------ */
+.map {
+  background: #faf9ff;
+}
+
+.map h3 {
+  margin-top: 0;
+  margin-bottom: 40px;
+}
+
+.map-embed {
+  height: 320px;
+  background: #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.map-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.site-footer {
+  margin: 40px 0 80px;
+  text-align: center;
+  color: #888;
+}
+
+/* Animations Shared */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ==================================================================
+   MEDIA QUERIES (Consolidated)
+   ================================================================== */
+
+@media (min-width: 900px) {
+  .hero-inner { padding: 20px 16px; }
+  .container { padding: 0; }
+}
+
+/* Tablet / Mobile Large (768px and below) */
 @media (max-width: 768px) {
-  .rsvp {
-    padding: 60px 20px;
+  /* Hero & Fullscreen */
+  .hero {
+    min-height: 700px;
+    height: auto;
+  }
+  .fullscreen-section {
+    height: 100dvh;
+    padding-top: 20vh;
+  }
+  .section-content {
+    padding: 15px;
+    max-width: 95%;
+  }
+  .section-content p {
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 0 10px;
+  }
+  .section-content .message-gif-wrapper {
+    width: 60%;
+    max-width: 250px;
+    margin: 0 auto 15px;
+  }
+  
+  /* Typography */
+  .couple { font-size: 48px; }
+  .subtitle { font-size: 24px; }
+  
+  /* Buttons */
+  .hero-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .btn {
+    width: 100%;
+    text-align: center;
   }
 
+  /* Countdown */
+  .countdown-section {
+    padding: 57px 0 0 0;
+    min-height: 100vh;
+    display: inline-block;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .countdown-section > * {
+    padding: 0;
+    padding-top: 0%;
+  }
+  .countdown {
+    margin: 20px auto;
+    padding: 0 5px;
+  }
+  .countdown-to .to-text { font-size: 18px; }
+  .countdown-to .to-label { font-size: 27px; }
+  .countdown-days .num { font-size: 90px; }
+  .countdown-days .label { font-size: 24px; }
+  .countdown-time { gap: 10px; }
+  .time-item .num { font-size: 25px; }
+  .time-item .label { font-size: 12px; }
+
+  /* Event Info & Map */
+  .event-info { padding: 60px 15px; }
+  .en-heading { font-size: 1.8em; }
+  .event-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .event-card { padding: 30px 20px; }
+  .facility-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .map { padding: 60px 15px; }
+
+  /* RSVP */
+  .rsvp { padding: 60px 20px; }
   .radio-group {
     flex-direction: column;
     gap: 15px;
     align-items: flex-start;
   }
-
   .submit-btn {
     width: 100%;
     padding: 16px 40px;
   }
-  
+
+  /* Greeting */
   .greeting {
-    padding: 40px 20px 40px; /* モバイル時も十分な白余白 */
+    padding: 20px 10px 40px;
   }
-  
-  .event-info {
-    padding: 60px 15px;
-  }
-  
-  .photos {
-    padding: 60px 0;
-  }
-  
-  .carousel-container {
-    padding: 40px 0;
-  }
-  
+
+  /* Photos & Carousel */
+  .photos { padding: 60px 0; }
+  .carousel-container { padding: 40px 0; }
   .carousel-stage {
     height: 300px;
     perspective: 1000px;
   }
-  
   .carousel-item.portrait {
     width: 150px;
     height: 210px;
     margin-left: -75px;
     margin-top: -105px;
   }
-  
   .carousel-item.landscape {
     width: 210px;
     height: 150px;
     margin-left: -105px;
     margin-top: -75px;
   }
-  
   .carousel-btn {
     width: 38px;
     height: 38px;
     font-size: 15px;
   }
-  
   .carousel-controls {
     margin-top: 24px;
     gap: 12px;
   }
+  .carousel-indicators { margin-top: 16px; }
+  .carousel-indicator { width: 8px; height: 8px; }
+  .carousel-indicator.active { width: 18px; }
+}
+
+/* Mobile Medium (720px and below) */
+@media (max-width: 720px) {
+  .couple { font-size: 54px; }
+  .container { padding: 0 20px; }
+  h2, h3 { font-size: 2em; }
   
-  .carousel-indicators {
-    margin-top: 16px;
+  /* Profile */
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
-  
-  .carousel-indicator {
-    width: 8px;
-    height: 8px;
+  .avatar {
+    width: 220px;
+    height: 220px;
   }
-  
-  .carousel-indicator.active {
-    width: 18px;
+
+  .rsvp { padding: 30px 20px; }
+  .details ul { width: 100%; }
+  .details li {
+    flex-direction: column;
+    gap: 0.5em;
+    text-align: center;
   }
-  
-  .map {
-    padding: 60px 15px;
+  .details li strong { min-width: auto; }
+  .attendance label {
+    display: block;
+    margin: 10px 0;
   }
 }
 
-/* さらに小さい端末向けの微調整 */
+/* Mobile Small (540px and below) */
+@media (max-width: 540px) {
+  .fullscreen-section { padding-top: 15vh; }
+
+  /* Message & Profile GIFs */
+  .message-gif-wrapper,
+  .section-content .message-gif-wrapper,
+  .profile-gif-wrapper { 
+    width: 54%;
+    max-width: 225px;
+    margin: 0 auto -15px;
+  }
+  .section-content .message-gif-wrapper {
+    margin: 0 auto 15px;
+  }
+  .profile-gif-wrapper {
+    margin: 0 auto 20px;
+  }
+  
+  .greeting {
+    padding: 60px 20px 80px;
+    min-height: 600px;
+  }
+  .greeting > * { max-width: 90%; }
+  .greeting p {
+    font-size: 0.75em;
+    line-height: 1.9;
+    padding: 0 50px;
+    text-align: center;
+  }
+
+  .section-content p {
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 0 15px;
+  }
+
+  .profile { padding: 80px 20px 60px; }
+  .profile-grid { gap: 40px; }
+  .avatar {
+    width: 200px;
+    height: 200px;
+  }
+  .bio { font-size: 0.9em; }
+}
+
+/* Mobile Extra Small (420px and below) */
 @media (max-width: 420px) {
   .carousel-stage {
     height: 260px;
@@ -1541,81 +1351,6 @@ textarea {
     height: 34px;
     font-size: 14px;
   }
-  .carousel-indicator {
-    width: 7px;
-    height: 7px;
-  }
-  .carousel-indicator.active {
-    width: 16px;
-  }
-}
-
-.map {
-  background: #faf9ff;
-  padding: 80px 20px;
-  margin: 0;
-  width: 100%;
-}
-
-.map h3 {
-  margin-top: 0;
-  margin-bottom: 40px;
-}
-
-.map-embed{height:320px;background:#eee;border-radius:8px;overflow:hidden;max-width:1000px;margin:0 auto;}
-.map-embed iframe{width:100%;height:100%;border:0}
-.deadline{font-weight:600;color:var(--muted)}
-.site-footer{margin:40px 0 80px;text-align:center;color:#888}
-
-@media(min-width:900px){
-  .hero-inner{padding:20px 16px}
-  .container{padding:0}
-}
-
-@media(max-width:720px){
-  .couple{font-size:54px}
-  .hero-inner{flex-direction:column;align-items:center;text-align:center}
-  .hero-decor{display:none}
-  
-  .container {
-    padding: 0 20px;
-  }
-  
-  h2, h3 {
-    font-size: 2em;
-  }
-  
-  .photo-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  
-  .rsvp {
-    padding: 30px 20px;
-  }
-  
-  .details ul {
-    width: 100%;
-  }
-  
-  .details li {
-    flex-direction: column;
-    gap: 0.5em;
-    text-align: center;
-  }
-  
-  .details li strong {
-    min-width: auto;
-  }
-  
-  .attendance label {
-    display: block;
-    margin: 10px 0;
-  }
-}
-
-@media (max-width: 768px) {
-    .greeting {
-        padding: 20px 10px 40px;
-    }
+  .carousel-indicator { width: 7px; height: 7px; }
+  .carousel-indicator.active { width: 16px; }
 }
