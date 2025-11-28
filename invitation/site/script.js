@@ -598,6 +598,25 @@
     window.addEventListener('orientationchange', () => {
       setTimeout(setViewportHeight, 100);
     });
+    
+    // Smooth scrolling enhancement for better UX
+    // Polyfill for older browsers that don't support scroll-behavior: smooth
+    if (!CSS.supports('scroll-behavior', 'smooth')) {
+      const links = document.querySelectorAll('a[href^="#"]');
+      links.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    }
   });
 
 })();

@@ -19,6 +19,9 @@ html {
   scroll-behavior: smooth;
   height: 100%;
   min-height: 100dvh;
+  /* Optimize scrolling performance */
+  scroll-padding-top: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -31,6 +34,10 @@ body {
   font-size: 16px;
   min-height: 100dvh;
   height: 100%;
+  /* Smooth scrolling optimizations */
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 main, .container {
@@ -99,22 +106,19 @@ h2, h3 {
    Fullscreen Sections & Backgrounds
 ------------------------------------------------------------------ */
 .fullscreen-container {
-  scroll-snap-type: y proximity;
-  overflow-y: scroll;
-  height: 100vh; /* Fallback for browsers without dvh support */
-  height: calc(var(--vh, 1vh) * 100); /* Use JS-calculated vh */
-  height: 100dvh; /* Modern browsers with dvh support */
+  /* scroll-snap-type: y proximity; -- Disabled for smoother scrolling */
+  overflow-y: visible; /* Allow natural scrolling flow */
   scroll-behavior: smooth;
 }
 
 .fullscreen-section {
   position: relative;
   width: 100%;
-  height: 100vh; /* Fallback */
-  height: calc(var(--vh, 1vh) * 100); /* JS-calculated */
-  height: 100dvh; /* Modern browsers */
-  scroll-snap-align: center;
-  scroll-snap-stop: normal;
+  min-height: 100vh; /* Use min-height for more flexible layout */
+  min-height: calc(var(--vh, 1vh) * 100); /* JS-calculated */
+  min-height: 100dvh; /* Modern browsers */
+  /* scroll-snap-align: center; -- Disabled for smoother scrolling */
+  /* scroll-snap-stop: normal; -- Disabled for smoother scrolling */
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -1142,9 +1146,9 @@ textarea {
     height: auto;
   }
   .fullscreen-section {
-    height: 100vh; /* Fallback */
-    height: calc(var(--vh, 1vh) * 100); /* JS-calculated */
-    height: 100dvh; /* Modern browsers */
+    min-height: 100vh; /* Fallback - use min-height for flexibility */
+    min-height: calc(var(--vh, 1vh) * 100); /* JS-calculated */
+    min-height: 100dvh; /* Modern browsers */
     padding-top: 13vh;
   }
   .section-content {
