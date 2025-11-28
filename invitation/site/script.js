@@ -582,6 +582,22 @@
     // Setup GIF replay for Message and Profile
     setupGifReplay('message-gif');
     setupGifReplay('profile-gif');
+    
+    // Mobile viewport height fix for address bar visibility changes
+    function setViewportHeight() {
+      // Get actual viewport height and set CSS custom property
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    
+    // Set initial viewport height
+    setViewportHeight();
+    
+    // Update on resize and orientation change
+    window.addEventListener('resize', setViewportHeight);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(setViewportHeight, 100);
+    });
   });
 
 })();

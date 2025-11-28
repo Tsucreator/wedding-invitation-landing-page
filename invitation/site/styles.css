@@ -7,6 +7,7 @@
   --card: #ffffff;
   --gradient-start: #1e3a8a;
   --gradient-end: #172554;
+  --vh: 1vh; /* Fallback for browsers that don't support dvh */
 }
 
 * {
@@ -17,6 +18,7 @@
 html {
   scroll-behavior: smooth;
   height: 100%;
+  min-height: 100dvh;
 }
 
 body {
@@ -27,6 +29,7 @@ body {
   background: var(--bg);
   font-weight: 300;
   font-size: 16px;
+  min-height: 100dvh;
   height: 100%;
 }
 
@@ -98,14 +101,18 @@ h2, h3 {
 .fullscreen-container {
   scroll-snap-type: y proximity;
   overflow-y: scroll;
-  height: 100vh;
+  height: 100vh; /* Fallback for browsers without dvh support */
+  height: calc(var(--vh, 1vh) * 100); /* Use JS-calculated vh */
+  height: 100dvh; /* Modern browsers with dvh support */
   scroll-behavior: smooth;
 }
 
 .fullscreen-section {
   position: relative;
   width: 100%;
-  height: 100dvh;
+  height: 100vh; /* Fallback */
+  height: calc(var(--vh, 1vh) * 100); /* JS-calculated */
+  height: 100dvh; /* Modern browsers */
   scroll-snap-align: center;
   scroll-snap-stop: normal;
   display: flex;
@@ -1135,7 +1142,9 @@ textarea {
     height: auto;
   }
   .fullscreen-section {
-    height: 100dvh;
+    height: 100vh; /* Fallback */
+    height: calc(var(--vh, 1vh) * 100); /* JS-calculated */
+    height: 100dvh; /* Modern browsers */
     padding-top: 13vh;
   }
   .section-content {
@@ -1171,7 +1180,9 @@ textarea {
   /* Countdown */
   .countdown-section {
     padding: 57px 0 0 0;
-    min-height: 100vh;
+    min-height: 100vh; /* Fallback */
+    min-height: calc(var(--vh, 1vh) * 100); /* JS-calculated */
+    min-height: 100dvh; /* Modern browsers */
     display: inline-block;
     align-items: flex-start;
     justify-content: center;
