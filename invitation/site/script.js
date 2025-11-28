@@ -111,10 +111,19 @@
   }
 
   function initCountdown(dateInput){
+    console.log('Initializing countdown with dateInput:', dateInput);
     const container = document.getElementById('countdown');
-    if(!container) return;
+    if(!container) {
+      console.error('Countdown container not found');
+      return;
+    }
     const target = parseDateLike(dateInput);
-    if(!target) { container.style.display = 'none'; return; }
+    console.log('Parsed target date:', target);
+    if(!target) { 
+      console.error('Failed to parse target date:', dateInput);
+      container.style.display = 'none'; 
+      return; 
+    }
 
     function tick(){
       const now = new Date();
@@ -128,12 +137,12 @@
       const secs = Math.floor(diff / 1000);
 
       // アニメーション付きで数字を更新する関数
-      function updateNumber(id, newValue, prevValue) {
+      function updateNumber(id, newValue, prevValue, shouldPad = false) {
         const el = document.getElementById(id);
         if (el && el.textContent !== String(newValue)) {
           el.classList.add('flip');
           setTimeout(() => {
-            el.textContent = String(newValue).padStart(2,'0');
+            el.textContent = shouldPad ? String(newValue).padStart(2,'0') : String(newValue);
             setTimeout(() => el.classList.remove('flip'), 100);
           }, 150);
         }
@@ -142,10 +151,10 @@
       // 前回の値を保存して比較
       if (!tick.prev) tick.prev = {days: -1, hours: -1, mins: -1, secs: -1};
       
-      updateNumber('cd-days', days, tick.prev.days);
-      updateNumber('cd-hours', String(hours).padStart(2,'0'), tick.prev.hours);
-      updateNumber('cd-mins', String(mins).padStart(2,'0'), tick.prev.mins);
-      updateNumber('cd-secs', String(secs).padStart(2,'0'), tick.prev.secs);
+      updateNumber('cd-days', days, tick.prev.days, false); // 日数は0埋めしない
+      updateNumber('cd-hours', hours, tick.prev.hours, true);
+      updateNumber('cd-mins', mins, tick.prev.mins, true);
+      updateNumber('cd-secs', secs, tick.prev.secs, true);
 
       tick.prev = {days, hours, mins, secs};
 
@@ -220,6 +229,9 @@
           section.classList.add('is-visible');
         }
       });
+      
+      // Profile section animation removed - now displays directly
+      
       scrollTimeout = null;
     }, 50); // 50msごとに実行（より滑らかに）
   }
@@ -520,6 +532,7 @@
 
   // --- DOMContentLoaded: ページの読み込み完了後に各種機能を初期化 ---
   document.addEventListener('DOMContentLoaded', ()=>{
+    console.log('=== DOMContentLoaded fired ===');
     // Start preloading and overlay removal
     removeInitialOverlay();
     
@@ -527,7 +540,7 @@
     init3DCarousel();    // 3Dカルーセルを初期化
 
     const form = document.getElementById('rsvp-form');
-    form.addEventListener('submit', submitForm);
+    if(form) form.addEventListener('submit', submitForm);
 
     const cal = document.getElementById('calendar-btn');
     if(cal){ cal.addEventListener('click', e=>{ e.preventDefault(); const href = makeGoogleCalendarLink(); if(href!=='#') window.open(href,'_blank'); }); }
@@ -538,6 +551,9 @@
     // スクロールアニメーションを初期化
     handleScrollAnimation();
     window.addEventListener('scroll', handleScrollAnimation);
+    
+    // 初期表示時にも一度実行（ページ読み込み完了後少し待ってから）
+    setTimeout(handleScrollAnimation, 100);
     
     // パララックス効果を初期化
     handleHeroParallax();
@@ -581,7 +597,9 @@
     
     // Setup GIF replay for Message and Profile
     setupGifReplay('message-gif');
-    setupGifReplay('profile-gif');
+    // setupGifReplay('profile-gif'); // TEMPORARILY DISABLED - no image exists
+    
+    // Profile animation removed - section displays directly
     
     // Mobile viewport height fix for address bar visibility changes
     function setViewportHeight() {

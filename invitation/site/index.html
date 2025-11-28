@@ -61,8 +61,213 @@
           ご多用中、誠に恐縮ではございますが、ぜひご出席いただきたくご案内申し上げます。</p>
         </div>
       </section>
-    </div>
 
+      <!-- プロフィール背景画像セクション -->
+      <section class="fullscreen-section profile-bg-section">
+        <div class="section-overlay"></div>
+        <div class="section-content profile-content">
+          <div class="profile-gif-wrapper">
+            <img
+              id="profile-gif"
+              src="animation/Profile.webp"
+              alt="Profile handwritten animation"
+              loading="lazy"
+            />
+          </div>
+          
+          <div class="profile-grid">
+            <!-- Groom Profile -->
+            <div class="profile-item">
+              <div class="avatar">
+                <img src="image/groom_photo.webp" alt="新郎の写真" loading="lazy">
+              </div>
+              <div class="profile-label">------Groom------</div>
+              <div class="name">
+                <span class="name-jp">髙井 真之介</span>
+              </div>
+            </div>
+            
+            <!-- Bride Profile -->
+            <div class="profile-item">
+              <div class="avatar">
+                <img src="image/bride_photo.webp" alt="新婦の写真" loading="lazy">
+              </div>
+              <div class="profile-label">------Bride------</div>
+              <div class="name">
+                <span class="name-jp">鈴木 郁穂</span>
+              </div>
+            </div>
+      </div>
+        </div>
+      </section>
+    </div>
+    
+    <section id="rsvp" class="rsvp fade-in-section">
+      <h2 class="section-heading">
+        <span class="en-heading">RSVP</span>
+        <span class="jp-heading">出欠のご連絡</span>
+      </h2>
+      
+      <div class="rsvp-intro">
+        <p>郵送でのご案内状に代わり、当招待状をお送りしております。<br>
+        お手数ではございますが、出席情報のご登録をお願い申し上げます。<br>
+        また当日のお食事のご用意にあたり、アレルギー等がある方は、アレルギー欄にご記入くださいますようお願い申し上げます。</p>
+        <p class="deadline" id="deadline"><strong><span id="deadline-date"></span>までにご一報賜りますようお願い申し上げます</strong></p>
+      </div>
+
+      <form id="rsvp-form" novalidate>
+        <fieldset class="attendance-select">
+          <legend class="form-section-title">出欠のご連絡 *</legend>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="attendance" value="attend" required>
+              <span class="radio-custom"></span>
+              <span class="radio-text">出席</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="attendance" value="absent">
+              <span class="radio-custom"></span>
+              <span class="radio-text">欠席</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-note">*は必須項目です</div>
+
+        <div class="form-group">
+          <label class="form-label">
+            お名前 * <span class="label-en">Name</span>
+            <input type="text" name="name" id="name" required placeholder="山田 太郎">
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            ふりがな * <span class="label-en">Kana</span>
+            <input type="text" name="kana" id="kana" required placeholder="やまだ たろう">
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            メールアドレス * <span class="label-en">Email Address</span>
+            <input type="email" name="email" id="email" required placeholder="you@example.com">
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            アレルギー <span class="label-en">Allergy</span>
+            <textarea name="allergy" id="allergy" rows="3" placeholder="例: 卵、乳製品、えび"></textarea>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            メッセージ <span class="label-en">Message</span>
+            <textarea name="message" id="message" rows="4" placeholder="お二人へのメッセージをお聞かせください"></textarea>
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="submit" class="submit-btn">
+            <span>送信する</span>
+            <span class="btn-en">SUBMIT</span>
+          </button>
+        </div>
+      </form>
+
+      <div id="response" class="response" role="status" aria-live="polite"></div>
+    </section>
+    
+    <section class="event-info fade-in-section">
+      <div class="info-container">
+        <h2 class="section-heading">
+          <span class="en-heading">Event Details</span>
+          <span class="jp-heading">式場のご案内</span>
+        </h2>
+        
+        <div class="event-grid">
+          <div class="event-card">
+            <div class="card-icon">📅</div>
+            <h3 class="card-title">
+              <span class="en">Wedding Date</span>
+              <span class="jp">挙式日</span>
+            </h3>
+            <div class="card-body">
+              <div class="event-date">2026.3.20 <span class="day-of-week">(金)</span></div>
+              <div class="event-schedule">
+                <p><span class="schedule-label">挙式</span> 10:00〜</p>
+                <p><span class="schedule-label">披露宴</span> 12:00〜14:30</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="event-card">
+            <div class="card-icon">📍</div>
+            <h3 class="card-title">
+              <span class="en">Venue</span>
+              <span class="jp">会場</span>
+            </h3>
+            <div class="card-body">
+              <div class="venue-name">〇〇迎賓館</div>
+              <div class="venue-room">△△の間</div>
+              <a href="#map" class="map-link">
+                <i class="fas fa-map-marker-alt"></i>
+                地図を見る
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="photos fade-in-section">
+      <h2 class="section-heading">
+        <span class="en-heading">Photos</span>
+        <span class="jp-heading">思い出</span>
+      </h2>
+      
+      <div class="carousel-container">
+        <div class="carousel-stage">
+          <div class="carousel-track" id="carousel-track">
+            <!-- Photo placeholders -->
+            <div class="carousel-item portrait center">
+              <div class="photo-placeholder">Photo 1</div>
+            </div>
+            <div class="carousel-item landscape">
+              <div class="photo-placeholder">Photo 2</div>
+            </div>
+            <div class="carousel-item portrait">
+              <div class="photo-placeholder">Photo 3</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="prev-btn">❮</button>
+          <button class="carousel-btn" id="next-btn">❯</button>
+        </div>
+        
+        <div class="carousel-indicators" id="carousel-indicators"></div>
+      </div>
+    </section>
+    
+    <section id="map" class="map fade-in-section">
+      <h2 class="section-heading">
+        <span class="en-heading">Access</span>
+        <span class="jp-heading">アクセス</span>
+      </h2>
+      
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8280909747894!2d139.69170731525895!3d35.68946598019441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b5e3e3e3e3e%3A0x3e3e3e3e3e3e3e3e!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1234567890123"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">

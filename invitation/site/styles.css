@@ -122,7 +122,7 @@ h2, h3 {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 33vh;
+  padding-top: 0vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -132,6 +132,7 @@ h2, h3 {
 .hero-section { background-image: url('image/hero_image.webp'); }
 .countdown-bg-section { background-image: url('image/countdown_bg_image.webp'); }
 .message-bg-section { background-image: url('image/message_bg_image.webp'); }
+.profile-bg-section { background-image: url('image/profile_bg_image.webp'); }
 
 /* コンテンツオーバーレイ */
 .section-overlay {
@@ -368,7 +369,7 @@ h2, h3 {
 }
 
 .fade-in-section {
-  opacity: 0;
+  opacity: 1;
   transform: translateY(30px);
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
               transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -446,21 +447,26 @@ h2, h3 {
 /* ------------------------------------------------------------------
    Profile Section
 ------------------------------------------------------------------ */
-.profile {
-  padding: 120px 20px 80px;
-  background: linear-gradient(to bottom, #3a3a3a 0%, rgba(58, 58, 58, 0.8) 30%, rgba(255, 255, 255, 0.9) 70%, #fff 100%);
-  width: 100%;
-  margin: 0;
+/* Profile section is now handled as fullscreen-section */
+.profile-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 .profile-gif-wrapper {
   width: 54%;
   max-width: 360px;
-  margin: 0 auto 30px;
+  margin: 30vh auto 20px;
   display: flex;
   justify-content: center;
   position: relative;
   z-index: 5;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
 }
 
 .profile-gif-wrapper img {
@@ -477,13 +483,22 @@ h2, h3 {
   max-width: 1100px;
   margin: 0 auto;
   align-items: start;
+  padding-top: 2vh;
 }
 
-.profile-card {
-  background: transparent;
-  border: none;
-  padding: 20px;
+.profile-item {
   text-align: center;
+  color: white;
+}
+
+.profile-label {
+  font-family: 'Old Standard TT', 'Noto Serif JP', serif;
+  font-size: 1.5em;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  letter-spacing: 0.1em;
 }
 
 .avatar {
@@ -493,8 +508,8 @@ h2, h3 {
   overflow: hidden;
   margin: 0 auto 25px;
   background: #f5f5f5;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  border: 4px solid #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .avatar img {
@@ -509,25 +524,26 @@ h2, h3 {
   font-weight: 500;
   margin: 10px 0 15px;
   line-height: 1.3;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
 .name-en {
   display: block;
   font-size: 1.6em;
   letter-spacing: 0.02em;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
 .name-jp {
   display: block;
-  font-size: 0.95em;
-  color: #666;
+  font-size: 1.9em;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
 }
 
-.bio {
-  color: #555;
-  line-height: 1.9;
-  font-size: 0.95em;
-}
+
 
 /* ------------------------------------------------------------------
    Event Information
@@ -1149,7 +1165,7 @@ textarea {
     min-height: 100vh; /* Fallback - use min-height for flexibility */
     min-height: calc(var(--vh, 1vh) * 100); /* JS-calculated */
     min-height: 100dvh; /* Modern browsers */
-    padding-top: 13vh;
+    padding-top: 0vh;
   }
   .section-content {
     padding: 15px;
@@ -1283,8 +1299,8 @@ textarea {
     gap: 30px;
   }
   .avatar {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
   }
 
   .rsvp { padding: 30px 20px; }
@@ -1303,7 +1319,7 @@ textarea {
 
 /* Mobile Small (540px and below) */
 @media (max-width: 540px) {
-  .fullscreen-section { padding-top: 8vh; }
+  .fullscreen-section { padding-top: 0vh; }
 
   /* Message & Profile GIFs */
   .message-gif-wrapper,
@@ -1317,7 +1333,9 @@ textarea {
     margin: 5vh auto 15px;
   }
   .profile-gif-wrapper {
-    margin: 0 auto 20px;
+    width: 60%;
+    max-width: 250px;
+    margin: 1vh auto 15px;
   }
   
   .greeting {
@@ -1339,13 +1357,18 @@ textarea {
     margin-top: -5vh;
   }
 
-  .profile { padding: 80px 20px 60px; }
-  .profile-grid { gap: 40px; }
-  .avatar {
-    width: 200px;
-    height: 200px;
+  .profile-content { padding: 15px; }
+  .profile-grid { 
+    gap: 30px;
+    grid-template-columns: 1fr;
   }
-  .bio { font-size: 0.9em; }
+  .profile-gif-wrapper {
+    margin: 1vh auto 15px;
+  }
+  .avatar {
+    width: 180px;
+    height: 180px;
+  }
 }
 
 /* Mobile Extra Small (420px and below) */
